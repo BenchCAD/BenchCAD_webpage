@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" font-family="Google Sans, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#eef2ff"/>
+      <stop offset="1" stop-color="#fdf2f8"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f4ed8"/>
+      <stop offset="1" stop-color="#db2777"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="320" fill="url(#bg)" rx="12"/>
+
+  <!-- 2x2 composite placeholder (image) -->
+  <g transform="translate(40,40)">
+    <rect width="240" height="240" fill="#fff" stroke="#cbd5e1" stroke-width="2" rx="6"/>
+    <line x1="120" y1="0" x2="120" y2="240" stroke="#e2e8f0"/>
+    <line x1="0" y1="120" x2="240" y2="120" stroke="#e2e8f0"/>
+    <!-- rough part silhouettes -->
+    <circle cx="60" cy="60" r="28" fill="none" stroke="#334155" stroke-width="2"/>
+    <rect x="150" y="35" width="60" height="50" fill="none" stroke="#334155" stroke-width="2"/>
+    <polygon points="30,200 90,160 90,210 30,210" fill="none" stroke="#334155" stroke-width="2"/>
+    <path d="M150 160 L210 160 L180 210 Z" fill="none" stroke="#334155" stroke-width="2"/>
+    <text x="120" y="270" text-anchor="middle" font-size="14" fill="#64748b">2×2 composite render</text>
+  </g>
+
+  <!-- arrow + model -->
+  <g transform="translate(320,130)">
+    <path d="M0 30 L80 30" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  </g>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <g transform="translate(420,110)">
+    <rect width="140" height="100" rx="12" fill="url(#accent)"/>
+    <text x="70" y="45" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">VLM / LLM</text>
+    <text x="70" y="70" text-anchor="middle" fill="#fff" font-size="12" opacity="0.9">GPT · Claude · Qwen</text>
+  </g>
+
+  <g transform="translate(580,130)">
+    <path d="M0 30 L80 30" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- 3 outputs -->
+  <g transform="translate(680,40)" font-size="13" fill="#0f172a">
+    <rect width="240" height="70" rx="8" fill="#fff" stroke="#cbd5e1"/>
+    <text x="12" y="22" font-weight="700" fill="#1f4ed8">image → code</text>
+    <text x="12" y="44" font-family="monospace" font-size="11" fill="#334155">cq.Workplane().box(40,40,10)</text>
+    <text x="12" y="60" font-family="monospace" font-size="11" fill="#334155">  .faces("&gt;Z").hole(8)</text>
+  </g>
+  <g transform="translate(680,125)" font-size="13" fill="#0f172a">
+    <rect width="240" height="70" rx="8" fill="#fff" stroke="#cbd5e1"/>
+    <text x="12" y="22" font-weight="700" fill="#9333ea">image → QA</text>
+    <text x="12" y="44" font-size="12" fill="#334155">Q: hole diameter? → 8.0</text>
+    <text x="12" y="60" font-size="12" fill="#334155">Q: fillet radius? → 2.5</text>
+  </g>
+  <g transform="translate(680,210)" font-size="13" fill="#0f172a">
+    <rect width="240" height="70" rx="8" fill="#fff" stroke="#cbd5e1"/>
+    <text x="12" y="22" font-weight="700" fill="#db2777">code → QA</text>
+    <text x="12" y="44" font-size="12" fill="#334155">text-only LLM reads CadQuery</text>
+    <text x="12" y="60" font-size="12" fill="#334155">and answers numeric questions</text>
+  </g>
+</svg>

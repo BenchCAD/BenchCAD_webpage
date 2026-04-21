@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="BenchCAD — A synthetic CAD benchmark for vision-language models. 106 parametric families, image→code / image→QA / code→QA tasks.">
+  <meta name="keywords" content="BenchCAD, CAD, CadQuery, benchmark, VLM, LLM, image-to-code, IoU, Chamfer">
+  <title>BenchCAD — A Synthetic CAD Benchmark for Vision-Language Models</title>
+
+  <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml">
+
+  <link rel="stylesheet" href="static/vendor/css/bulma.min.css">
+  <link rel="stylesheet" href="static/vendor/css/fontawesome.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold">
+            <span class="benchcad-logo">BenchCAD</span>
+          </h1>
+          <h2 class="subtitle is-3 publication-subtitle">
+            A Synthetic CAD Benchmark for Vision-Language Models
+          </h2>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Authors</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Paper under double-blind review</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-book-open"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">🤗</span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#leaderboard" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-trophy"></i></span>
+                  <span>Leaderboard</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEASER: single example + distribution -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-vcentered">
+        <div class="column is-half has-text-centered">
+          <img src="static/cases/wing_nut.webp" alt="wing_nut rotating 3D render" class="hero-example">
+          <p class="hero-caption">A <b>wing_nut</b> sample — 3D render rotating around its primary axis (5° tilt). Every family in the registry ships with ground-truth CadQuery code, STEP, mesh, 4-view composite, and numeric QA pairs.</p>
+        </div>
+        <div class="column is-half has-text-centered">
+          <img src="static/images/family_distribution.svg" alt="BenchCAD family distribution wheel" class="hero-distribution">
+          <p class="hero-caption">106 parametric families grouped across 8 mechanical categories. Outer ring: individual families; inner ring: category.</p>
+        </div>
+      </div>
+      <h2 class="subtitle has-text-centered" style="margin-top:2rem;">
+        <span class="benchcad-logo">BenchCAD</span> evaluates VLMs / LLMs on four parallel CAD tasks —
+        <b>image → code</b>, <b>image → QA</b>, <b>code → QA</b>, <b>edit code</b> —
+        built from <b>106 parametric families</b> referencing <b>54 ISO / DIN / EN</b> standards.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- EXAMPLE CASES -->
+<section class="section" id="gallery">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Example Cases</h2>
+    <p class="has-text-centered has-text-grey" style="margin-bottom:1.5rem;">
+      A small slice of the family registry — each part rotating around its primary axis.
+    </p>
+
+    <div class="case-grid">
+      <div class="case-card">
+        <img class="case-media" src="static/cases/twisted_drill.webp" alt="twisted_drill rotating render" loading="lazy">
+        <p class="case-label">twisted_drill</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/wing_nut.webp" alt="wing_nut rotating render" loading="lazy">
+        <p class="case-label">wing_nut</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/twisted_bracket.webp" alt="twisted_bracket rotating render" loading="lazy">
+        <p class="case-label">twisted_bracket</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/propeller.webp" alt="propeller rotating render" loading="lazy">
+        <p class="case-label">propeller</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/impeller.webp" alt="impeller rotating render" loading="lazy">
+        <p class="case-label">impeller</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/bellows.webp" alt="bellows rotating render" loading="lazy">
+        <p class="case-label">bellows</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/heat_sink.webp" alt="heat_sink rotating render" loading="lazy">
+        <p class="case-label">heat_sink</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/eyebolt.webp" alt="eyebolt rotating render" loading="lazy">
+        <p class="case-label">eyebolt</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/turnbuckle.webp" alt="turnbuckle rotating render" loading="lazy">
+        <p class="case-label">turnbuckle</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/hinge.webp" alt="hinge rotating render" loading="lazy">
+        <p class="case-label">hinge</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/ratchet_sector.webp" alt="ratchet_sector rotating render" loading="lazy">
+        <p class="case-label">ratchet_sector</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/piston.webp" alt="piston rotating render" loading="lazy">
+        <p class="case-label">piston</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/manifold_block.webp" alt="manifold_block rotating render" loading="lazy">
+        <p class="case-label">manifold_block</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/lathe_turned_part.webp" alt="lathe_turned_part rotating render" loading="lazy">
+        <p class="case-label">lathe_turned_part</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/spline_hub.webp" alt="spline_hub rotating render" loading="lazy">
+        <p class="case-label">spline_hub</p>
+      </div>
+      <div class="case-card">
+        <img class="case-media" src="static/cases/fan_shroud.webp" alt="fan_shroud rotating render" loading="lazy">
+        <p class="case-label">fan_shroud</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABSTRACT / INTRO -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>
+            <b>BenchCAD</b> is an industry-grade synthetic CAD benchmark —
+            <b>106 parametric families</b> grounded in <b>54 ISO / DIN / EN</b> specifications,
+            each sample shipping ground-truth <b>CadQuery</b>, <b>STEP</b>, a multi-view composite render,
+            and numeric <b>QA pairs</b>. Four parallel evaluation axes:
+          </p>
+          <ul>
+            <li><b>Image → Code</b> — render → CadQuery → IoU / Chamfer / Feature-F1.</li>
+            <li><b>Image → QA</b> — render → JSON numerics → symmetric ratio accuracy.</li>
+            <li><b>Code → QA</b> — text-only numeric reasoning over ground-truth code.</li>
+            <li><b>Edit Code</b> — original code + delta-render → edited CadQuery vs. GT-edit.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATASET STATS -->
+<section class="section" style="background:#f7f7fa;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Dataset at a Glance</h2>
+    <div class="columns is-centered">
+      <div class="column is-one-third has-text-centered">
+        <p class="stat-number">106</p>
+        <p class="stat-label">parametric families</p>
+      </div>
+      <div class="column is-one-third has-text-centered">
+        <p class="stat-number">54</p>
+        <p class="stat-label">ISO / DIN / EN standards referenced</p>
+      </div>
+    </div>
+
+    <div class="content has-text-centered">
+      <p>
+        Families span fasteners, transmission parts, enclosures, sheet metal, springs, brackets, and parametric primitives.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- TASKS -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Four Parallel Tasks</h2>
+    <div class="columns is-multiline">
+      <div class="column is-half">
+        <div class="card task-card">
+          <div class="card-content">
+            <p class="task-icon"><i class="fas fa-code"></i></p>
+            <p class="title is-4">Image → Code</p>
+            <p class="subtitle is-6">CadQuery generation from a rendered part</p>
+            <p>Model sees a 2×2 composite render, outputs a CadQuery program. We re-execute, render, and score against GT via <b>IoU</b> (voxel 64³), <b>Chamfer</b> (2048 pts), and <b>Feature-F1</b>.</p>
+          </div>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="card task-card">
+          <div class="card-content">
+            <p class="task-icon"><i class="fas fa-question-circle"></i></p>
+            <p class="title is-4">Image → QA</p>
+            <p class="subtitle is-6">Visual numeric reasoning</p>
+            <p>Model answers numeric questions about the rendered part (hole diameter, fillet radius, counts, ratios). Scored by <b>symmetric ratio accuracy</b>.</p>
+          </div>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="card task-card">
+          <div class="card-content">
+            <p class="task-icon"><i class="fas fa-terminal"></i></p>
+            <p class="title is-4">Code → QA</p>
+            <p class="subtitle is-6">Text-only numeric reasoning</p>
+            <p>Model reads ground-truth CadQuery source and answers the same numeric questions. Isolates code-understanding from visual perception.</p>
+          </div>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="card task-card">
+          <div class="card-content">
+            <p class="task-icon"><i class="fas fa-pen-to-square"></i></p>
+            <p class="title is-4">Edit Code</p>
+            <p class="subtitle is-6">Parametric edit from delta renders</p>
+            <p>Given original CadQuery plus a target render reflecting a <b>2–5% parameter delta</b>, the model edits the code. We execute and score the edited geometry against the GT-edit via IoU / Chamfer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section class="section" id="leaderboard" style="background:#f7f7fa;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Leaderboard <span class="tag is-warning is-light" style="vertical-align:middle;margin-left:0.5rem;">Preview</span></h2>
+    <p class="has-text-centered has-text-grey">
+      Higher is better. Image → Code reports mean IoU; Image → QA / Code → QA / Edit Code report accuracy.
+      <br><i>Preview results — frozen on a small held-out subset; full eval forthcoming.</i>
+    </p>
+
+    <div class="table-container">
+      <table class="table is-striped is-hoverable is-fullwidth has-text-centered">
+        <thead>
+          <tr>
+            <th class="has-text-left">Model</th>
+            <th>Image → Code ↑</th>
+            <th>Image → QA ↑</th>
+            <th>Code → QA ↑</th>
+            <th>Edit Code ↑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="has-text-left"><b>Claude Opus 4.7</b></td>
+            <td><b>0.456</b></td>
+            <td>0.841</td>
+            <td><b>0.887</b></td>
+            <td><b>0.732</b></td>
+          </tr>
+          <tr>
+            <td class="has-text-left">Gemini 3.1 Pro</td>
+            <td>0.388</td>
+            <td>0.782</td>
+            <td>0.824</td>
+            <td>0.691</td>
+          </tr>
+          <tr>
+            <td class="has-text-left">GPT-5.2 Pro</td>
+            <td>0.355</td>
+            <td>0.748</td>
+            <td>0.801</td>
+            <td>0.654</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="has-text-centered" style="margin-top:1rem;">
+      To submit results, open a PR on the code repo (link withheld during review) with your <code>results.jsonl</code>.
+    </p>
+  </div>
+</section>
+
+<!-- BIBTEX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">BibTeX</h2>
+    <pre><code>@misc{benchcad2026,
+  title  = {BenchCAD: A Synthetic CAD Benchmark for Vision-Language Models},
+  author = {Anonymous Authors},
+  year   = {2026},
+  note   = {Paper under double-blind review}
+}</code></pre>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        Template adapted from <a href="https://nerfies.github.io/">Nerfies</a> /
+        <a href="https://csbench.github.io/">CS-Bench</a>.
+        Source available under
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
