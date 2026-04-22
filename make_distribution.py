@@ -161,15 +161,23 @@ def main() -> None:
                                facecolor=fam_color,
                                edgecolor="white", linewidth=0.6, zorder=3))
 
-        # Category label — upright, centered in the wedge
-        mid_rad = math.radians((start + end) / 2)
+        # Category label — rotated to follow the arc tangent (CS-Bench style)
+        mid_deg = (start + end) / 2
+        mid_rad = math.radians(mid_deg)
         label_r = (R_CAT_IN + R_CAT_OUT) / 2
         lx = label_r * math.cos(mid_rad)
         ly = label_r * math.sin(mid_rad)
+        # Tangent to circle: rotation = angle − 90°; flip when upside-down
+        rot = mid_deg - 90.0
+        if rot > 90.0:
+            rot -= 180.0
+        elif rot < -90.0:
+            rot += 180.0
         # Font size by sector span — big sectors get big labels
         fs = 16.0 + min(6.0, span_deg / 12)
         ax.text(lx, ly, CAT_LABELS[cat],
                 ha="center", va="center",
+                rotation=rot, rotation_mode="anchor",
                 fontsize=fs, fontweight="bold",
                 color="white", zorder=5)
 
