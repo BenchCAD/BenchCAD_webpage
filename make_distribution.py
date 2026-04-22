@@ -45,15 +45,18 @@ STANDARDS = {
 }
 
 CATEGORIES = {
-    "Fasteners & Hardware": [
+    "Fasteners": [
         "bolt", "pan_head_screw", "hex_nut", "wing_nut", "tee_nut",
         "washer", "rivet", "eyebolt", "u_bolt", "hex_standoff",
         "standoff", "pcb_standoff_plate", "wall_anchor", "grommet",
         "snap_clip", "clevis_pin", "dowel_pin", "cotter_pin", "taper_pin",
-        "circlip", "parallel_key", "knob", "ball_knob", "lobed_knob",
-        "pull_handle", "turnbuckle", "clevis", "j_hook",
+        "circlip", "parallel_key",
     ],
-    "Motion & Transmission": [
+    "Hardware": [
+        "knob", "ball_knob", "lobed_knob", "pull_handle",
+        "turnbuckle", "clevis", "j_hook",
+    ],
+    "Transmission": [
         "spur_gear", "helical_gear", "bevel_gear", "worm_screw",
         "sprocket", "double_simplex_sprocket", "pulley", "handwheel",
         "cam", "ratchet_sector", "impeller", "propeller", "spline_hub",
@@ -62,24 +65,24 @@ CATEGORIES = {
         "connecting_rod", "piston", "torus_link",
         "coil_spring", "torsion_spring",
     ],
-    "Structural & Mounting": [
+    "Structural": [
         "l_bracket", "z_bracket", "gusseted_bracket", "twisted_bracket",
         "mounting_angle", "mounting_plate", "slotted_plate",
         "keyhole_plate", "locator_block", "pillow_block", "rib_plate",
         "flat_link", "hinge", "dovetail_slide",
         "i_beam", "u_channel", "t_slot_rail", "rect_frame", "cruciform",
     ],
-    "Fluid & Process": [
+    "Fluid": [
         "pipe_flange", "round_flange", "t_pipe_fitting", "pipe_elbow",
         "duct_elbow", "venturi_tube", "nozzle", "grease_nipple",
         "threaded_adapter", "manifold_block", "bellows",
     ],
-    "Panels & Sheet Metal": [
+    "Panels": [
         "waffle_plate", "vented_panel", "mesh_panel", "wire_grid",
         "cable_routing_panel", "connector_faceplate", "sheet_metal_tray",
         "star_blank",
     ],
-    "Enclosures & Product Parts": [
+    "Enclosures": [
         "enclosure", "fan_shroud", "heat_sink", "motor_end_cap",
         "bearing_retainer_cap", "dome_cap", "battery_holder", "phone_stand",
         "chair", "table", "bucket", "gridfinity_bin",
@@ -87,25 +90,19 @@ CATEGORIES = {
     ],
 }
 
-# 6 distinct hues
+# 7 distinct hues (Fasteners/Hardware split out)
 COLORS = {
-    "Fasteners & Hardware":       "#7c3aed",
-    "Motion & Transmission":      "#059669",
-    "Structural & Mounting":      "#2563eb",
-    "Fluid & Process":            "#0891b2",
-    "Panels & Sheet Metal":       "#d97706",
-    "Enclosures & Product Parts": "#db2777",
+    "Fasteners":    "#7c3aed",
+    "Hardware":     "#c026d3",
+    "Transmission": "#059669",
+    "Structural":   "#2563eb",
+    "Fluid":        "#0891b2",
+    "Panels":       "#d97706",
+    "Enclosures":   "#db2777",
 }
 
-# Two-line breaks for upright readability inside sectors
-CAT_LABELS = {
-    "Fasteners & Hardware":       "Fasteners &\nHardware",
-    "Motion & Transmission":      "Motion &\nTransmission",
-    "Structural & Mounting":      "Structural &\nMounting",
-    "Fluid & Process":            "Fluid &\nProcess",
-    "Panels & Sheet Metal":       "Panels &\nSheet Metal",
-    "Enclosures & Product Parts": "Enclosures &\nProduct Parts",
-}
+# Single-word labels — one line, easier to rotate tangentially
+CAT_LABELS = {k: k for k in CATEGORIES}
 
 
 def lighten(hex_color: str, amount: float = 0.35) -> str:
@@ -167,12 +164,9 @@ def main() -> None:
         label_r = (R_CAT_IN + R_CAT_OUT) / 2
         lx = label_r * math.cos(mid_rad)
         ly = label_r * math.sin(mid_rad)
-        # Tangent to circle: rotation = angle − 90°; flip when upside-down
-        rot = mid_deg - 90.0
-        if rot > 90.0:
-            rot -= 180.0
-        elif rot < -90.0:
-            rot += 180.0
+        # Tangent to circle: rotation = angle − 90°, normalized so text
+        # always reads right-side up (i.e. rotation ∈ (-90, 90]).
+        rot = (mid_deg - 90.0 + 90.0) % 180.0 - 90.0
         # Font size by sector span — big sectors get big labels
         fs = 13.0 + min(4.5, span_deg / 14)
         ax.text(lx, ly, CAT_LABELS[cat],
@@ -191,7 +185,7 @@ def main() -> None:
             fontsize=27, fontweight="bold", color="#111827", zorder=6)
     ax.text(0, 0.15, "106 families", ha="center", va="center",
             fontsize=15, color="#1f2937", zorder=6)
-    ax.text(0, -0.22, "6 categories", ha="center", va="center",
+    ax.text(0, -0.22, "7 categories", ha="center", va="center",
             fontsize=14, color="#4b5563", zorder=6)
     ax.text(0, -0.62, f"{std_count} ISO / DIN / EN", ha="center", va="center",
             fontsize=14, color="#4b5563", zorder=6)
