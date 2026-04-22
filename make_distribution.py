@@ -174,7 +174,7 @@ def main() -> None:
         elif rot < -90.0:
             rot += 180.0
         # Font size by sector span — big sectors get big labels
-        fs = 16.0 + min(6.0, span_deg / 12)
+        fs = 13.0 + min(4.5, span_deg / 14)
         ax.text(lx, ly, CAT_LABELS[cat],
                 ha="center", va="center",
                 rotation=rot, rotation_mode="anchor",
