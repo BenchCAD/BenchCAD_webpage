@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="BenchCAD — A synthetic CAD benchmark for vision-language models. 106 parametric families, image→code / image→QA / code→QA tasks.">
-  <meta name="keywords" content="BenchCAD, CAD, CadQuery, benchmark, VLM, LLM, image-to-code, IoU, Chamfer">
-  <title>BenchCAD — A Synthetic CAD Benchmark for Vision-Language Models</title>
+  <meta name="description" content="BenchCAD — The first industry-grade CAD benchmark for vision-language models. 32,382 parametric variants across 106 part families, grounded in 54 ISO / DIN / EN standards.">
+  <meta name="keywords" content="BenchCAD, CAD, CadQuery, benchmark, VLM, LLM, image-to-code, IoU, Chamfer, ISO, DIN, industry-grade">
+  <title>BenchCAD — An Industry-Grade CAD Benchmark for Vision-Language Models</title>
 
   <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml">
 
@@ -35,7 +35,7 @@
             <span class="benchcad-logo">BenchCAD</span>
           </h1>
           <h2 class="subtitle is-3 publication-subtitle">
-            A Synthetic CAD Benchmark for Vision-Language Models
+            The First <b>Industry-Grade</b> CAD Benchmark for Vision-Language Models
           </h2>
 
           <div class="is-size-5 publication-authors">
@@ -93,24 +93,24 @@
       <div class="columns is-vcentered is-mobile is-centered" style="margin-bottom:1.5rem;">
         <div class="column is-narrow has-text-centered">
           <img src="static/cases/wing_nut.webp" alt="wing_nut rotating 3D render" class="hero-example">
-          <p class="hero-caption" style="max-width:220px;margin-left:auto;margin-right:auto;">A <b>wing_nut</b> sample — ground-truth CadQuery, STEP, mesh, 4-view, and numeric QA.</p>
+          <p class="hero-caption" style="max-width:220px;margin-left:auto;margin-right:auto;">One variant of the <b>wing_nut</b> family — ground-truth CadQuery, STEP, mesh, 4-view, and numeric QA.</p>
         </div>
         <div class="column is-narrow has-text-centered" style="padding:0 2.5rem;">
           <p class="stat-number" style="font-size:3.6rem;">32,382</p>
-          <p class="stat-label" style="font-size:1.1rem;">verified samples</p>
+          <p class="stat-label" style="font-size:1.1rem;">verified variants</p>
         </div>
       </div>
       <div class="has-text-centered">
-        <img src="static/images/family_distribution.svg" alt="BenchCAD family distribution — 106 families across 6 industrial sectors" class="hero-distribution">
-        <p class="hero-caption" style="max-width:960px;margin-left:auto;margin-right:auto;">106 parametric families spanning 6 industrial sectors — fasteners &amp; hardware, motion &amp; transmission, structural &amp; mounting, fluid &amp; process, panels &amp; sheet metal, enclosures &amp; product parts — grounded in 54 ISO / DIN / EN specifications.</p>
+        <img src="static/images/family_distribution.svg" alt="BenchCAD family distribution — 106 part families across 6 industrial sectors" class="hero-distribution">
+        <p class="hero-caption" style="max-width:960px;margin-left:auto;margin-right:auto;"><b>106 part families</b> — each a top-level taxonomy with hundreds of parametric variants — spread across 6 industrial sectors (fasteners &amp; hardware, motion &amp; transmission, structural &amp; mounting, fluid &amp; process, panels &amp; sheet metal, enclosures &amp; product parts) and grounded in 54 ISO / DIN / EN specifications.</p>
       </div>
       <h2 class="subtitle has-text-centered" style="margin-top:2rem;">
-        <span class="benchcad-logo">BenchCAD</span> evaluates VLMs / LLMs on four parallel CAD tasks —
-        <b>image → code</b>, <b>image → QA</b>, <b>code → QA</b>, <b>edit code</b> —
-        built from <b>106 parametric families</b> referencing <b>54 ISO / DIN / EN</b> standards.
+        <span class="benchcad-logo">BenchCAD</span> is the first <b>industry-grade</b> CAD benchmark —
+        <b>32,382 parametric variants</b> across <b>106 part families</b>, every family standardized against an <b>ISO / DIN / EN</b> specification.
+        It evaluates VLMs / LLMs on four parallel tasks: <b>image → code</b>, <b>image → QA</b>, <b>code → QA</b>, and <b>edit code</b>.
       </h2>
       <p class="has-text-centered has-text-grey" style="margin-top:0.75rem;">
-        The first benchmark spanning the <b>full parametric CAD operation spectrum</b> — sketch, extrude, revolve, sweep, loft, fillet, chamfer, shell, draft, offset, boolean, pattern, mirror, hole, and thread.
+        The only benchmark spanning the <b>full parametric CAD operation spectrum</b> — sketch, extrude, revolve, sweep, loft, fillet, chamfer, shell, draft, offset, boolean, pattern, mirror, hole, and thread.
       </p>
     </div>
   </div>
@@ -121,7 +121,7 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Example Cases</h2>
     <p class="has-text-centered has-text-grey" style="margin-bottom:1.5rem;">
-      A small slice of the family registry — each part rotating around its primary axis.
+      One variant from each of 16 part families — each part rotating around its primary axis.
     </p>
 
     <div class="case-grid">
@@ -202,12 +202,12 @@
         <div class="content has-text-justified">
           <p>
             <b>BenchCAD is the first industry-grade CAD benchmark to cover the full spectrum of parametric CAD operations.</b>
-            Every family is a manufacturable part grounded in an <b>ISO / DIN / EN</b> specification, not a synthetic primitive, and each sample exercises a realistic construction history rather than a single extrusion.
+            Each of the <b>106 part families</b> is a top-level taxonomic category — a manufacturable part class grounded in an <b>ISO / DIN / EN</b> specification, not a synthetic primitive — and each family unfolds into hundreds of parametric <b>variants</b> that exercise a realistic construction history rather than a single extrusion.
             The registry spans <b>2D sketching</b> (line, arc, circle, spline, polygon, rectangle), <b>solid construction</b> (extrude, revolve, sweep, loft), <b>feature modification</b> (fillet, chamfer, shell, draft, offset), <b>boolean composition</b> (union, cut, intersect), <b>patterning</b> (linear array, polar array, mirror), and <b>fastener-specific features</b> (hole, counterbore, countersink, thread / helix).
           </p>
           <p>
-            <b>106 parametric families</b> grounded in <b>54 ISO / DIN / EN</b> specifications,
-            each sample shipping ground-truth <b>CadQuery</b>, <b>STEP</b>, a multi-view composite render,
+            <b>32,382 parametric variants</b> across <b>106 part families</b>, grounded in <b>54 ISO / DIN / EN</b> specifications —
+            every sample shipping ground-truth <b>CadQuery</b>, <b>STEP</b>, a multi-view composite render,
             and numeric <b>QA pairs</b>. Four parallel evaluation axes:
           </p>
           <ul>
@@ -227,11 +227,15 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Dataset at a Glance</h2>
     <div class="columns is-centered">
-      <div class="column is-one-third has-text-centered">
-        <p class="stat-number">106</p>
-        <p class="stat-label">parametric families</p>
+      <div class="column is-one-quarter has-text-centered">
+        <p class="stat-number">32,382</p>
+        <p class="stat-label">parametric variants</p>
       </div>
-      <div class="column is-one-third has-text-centered">
+      <div class="column is-one-quarter has-text-centered">
+        <p class="stat-number">106</p>
+        <p class="stat-label">part families</p>
+      </div>
+      <div class="column is-one-quarter has-text-centered">
         <p class="stat-number">54</p>
         <p class="stat-label">ISO / DIN / EN standards referenced</p>
       </div>
@@ -351,7 +355,7 @@
   <div class="container is-max-desktop content">
     <h2 class="title is-3">BibTeX</h2>
     <pre><code>@misc{benchcad2026,
-  title  = {BenchCAD: A Synthetic CAD Benchmark for Vision-Language Models},
+  title  = {BenchCAD: An Industry-Grade CAD Benchmark for Vision-Language Models},
   author = {Anonymous Authors},
   year   = {2026},
   note   = {Paper under double-blind review}
