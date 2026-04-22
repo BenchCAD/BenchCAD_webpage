@@ -17,9 +17,9 @@ import vtk
 from PIL import Image
 from vtk.util.numpy_support import numpy_to_vtk
 
-ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "data/data_generation/generated_data/fusion360"
-OUT = ROOT / "website/static/cases"
+ROOT = Path(__file__).resolve().parent
+DATA = ROOT.parent / "Cadance/data/data_generation/generated_data/fusion360"
+OUT = ROOT / "static/cases"
 OUT.mkdir(parents=True, exist_ok=True)
 
 N_FRAMES = 24
@@ -37,7 +37,7 @@ FRAME_MS = 93             # 0.75x of prior 70ms → slower spin
 # (display_label, family_slug, stem) — all hard/complex samples
 CASES = [
     ("twisted_drill",      "twisted_drill",      "synth_twisted_drill_006224_s4420"),
-    ("wing_nut",           "wing_nut",           "synth_wing_nut_000189_s9999"),
+    ("bevel_gear",         "bevel_gear",         "synth_bevel_gear_000810_s4419"),
     ("twisted_bracket",    "twisted_bracket",    "synth_twisted_bracket_000001_s4418"),
     ("propeller",          "propeller",          "synth_propeller_000435_s4420"),
     ("impeller",           "impeller",           "synth_impeller_001351_s4185"),
@@ -47,7 +47,7 @@ CASES = [
     ("turnbuckle",         "turnbuckle",         "synth_turnbuckle_000104_s41918"),
     ("hinge",              "hinge",              "synth_hinge_000216_s5184"),
     ("ratchet_sector",     "ratchet_sector",     "synth_ratchet_sector_008624_s4420"),
-    ("piston",             "piston",             "synth_piston_012552_s4420"),
+    ("double_simplex_sprocket", "double_simplex_sprocket", "synth_double_simplex_sprocket_000297_s4419"),
     ("manifold_block",     "manifold_block",     "synth_manifold_block_010980_s4420"),
     ("lathe_turned_part",  "lathe_turned_part",  "synth_lathe_turned_part_000123_s4185"),
     ("spline_hub",         "spline_hub",         "synth_spline_hub_000197_s4194"),

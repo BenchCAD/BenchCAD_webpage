@@ -172,7 +172,7 @@ def main() -> None:
         lx = label_r * math.cos(mid_rad)
         ly = label_r * math.sin(mid_rad)
         # Font size by sector span — big sectors get big labels
-        fs = 10.0 + min(4.0, span_deg / 15)
+        fs = 14.0 + min(5.0, span_deg / 14)
         ax.text(lx, ly, CAT_LABELS[cat],
                 ha="center", va="center",
                 fontsize=fs, fontweight="bold",
@@ -184,14 +184,14 @@ def main() -> None:
     ax.add_patch(Circle((0, 0), R_HUB, facecolor="white",
                         edgecolor="#1f2937", linewidth=1.8, zorder=4))
     std_count = len({v for v in STANDARDS.values() if v})
-    ax.text(0, 0.40, "BenchCAD", ha="center", va="center",
-            fontsize=17, fontweight="bold", color="#111827", zorder=6)
-    ax.text(0, 0.05, "106 families", ha="center", va="center",
-            fontsize=10.5, color="#1f2937", zorder=6)
+    ax.text(0, 0.45, "BenchCAD", ha="center", va="center",
+            fontsize=22, fontweight="bold", color="#111827", zorder=6)
+    ax.text(0, 0.08, "106 families", ha="center", va="center",
+            fontsize=13, color="#1f2937", zorder=6)
     ax.text(0, -0.22, "8 categories", ha="center", va="center",
-            fontsize=9.5, color="#4b5563", zorder=6)
-    ax.text(0, -0.48, f"{std_count} ISO / DIN / EN", ha="center", va="center",
-            fontsize=9.5, color="#4b5563", zorder=6)
+            fontsize=12, color="#4b5563", zorder=6)
+    ax.text(0, -0.52, f"{std_count} ISO / DIN / EN", ha="center", va="center",
+            fontsize=12, color="#4b5563", zorder=6)
 
     # ---- Word cloud of family names around the wheel ----
     rng = random.Random(7)
@@ -215,7 +215,7 @@ def main() -> None:
     unplaced: list[tuple[str, str]] = []
     for fam, cat in all_fams:
         label = fam.replace("_", " ")
-        fs = rng.uniform(8.8, 11.5)
+        fs = rng.uniform(11.5, 15.5)
         # approximate text bbox (data units ≈ inches here with equal aspect)
         w = len(label) * fs * 0.0085
         h = fs * 0.018
@@ -246,7 +246,7 @@ def main() -> None:
     # Fallback pass: try anywhere in frame (outside wheel) for leftovers
     for fam, cat in unplaced:
         label = fam.replace("_", " ")
-        fs = rng.uniform(8.5, 10.5)
+        fs = rng.uniform(11.0, 13.5)
         w = len(label) * fs * 0.0085
         h = fs * 0.018
         done = False
