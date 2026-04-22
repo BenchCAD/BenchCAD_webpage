@@ -1,22 +1,20 @@
-"""Generate family-category distribution wheel for the BenchCAD site.
+"""Generate CS-Bench-style family-category distribution figure for BenchCAD.
 
-Output: website/static/images/family_distribution.svg
+Output: static/images/family_distribution.svg
 """
 
 from __future__ import annotations
 
 import math
+import random
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-import numpy as np
+from matplotlib.patches import Wedge, Circle
 
 OUT = Path(__file__).resolve().parent / "static/images/family_distribution.svg"
 
-# Primary ISO / DIN / EN standard per family (blank if no direct standard).
 STANDARDS = {
-    # Fasteners
     "bolt": "ISO 4014", "pan_head_screw": "ISO 14583", "hex_nut": "ISO 4032",
     "wing_nut": "DIN 315", "tee_nut": "DIN 1624", "washer": "ISO 7089",
     "rivet": "DIN 660", "eyebolt": "DIN 580", "u_bolt": "DIN 3570",
@@ -25,34 +23,26 @@ STANDARDS = {
     "cotter_pin": "ISO 1234", "taper_pin": "ISO 2339", "circlip": "DIN 471",
     "parallel_key": "DIN 6885", "knob": "DIN 6336", "ball_knob": "DIN 319",
     "lobed_knob": "DIN 6336", "pull_handle": "DIN 3124",
-    # Gears & Transmission
     "spur_gear": "ISO 1328", "helical_gear": "ISO 1328",
     "bevel_gear": "ISO 23509", "worm_screw": "ISO 1122",
     "sprocket": "ISO 606", "double_simplex_sprocket": "ISO 606",
     "pulley": "ISO 4183", "handwheel": "DIN 950", "spline_hub": "ISO 14",
-    # Shafts & Revolved
     "hollow_tube": "ISO 4200", "dog_bone": "ISO 527",
     "twisted_drill": "DIN 338", "spacer_ring": "DIN 988",
     "turnbuckle": "DIN 1480", "clevis": "DIN 71752", "j_hook": "DIN 1480",
-    # Springs
     "coil_spring": "DIN 2088", "torsion_spring": "DIN 2088",
     "bellows": "DIN 4820",
-    # Brackets & Mounts
     "shaft_collar": "DIN 705", "flat_link": "DIN 763", "hinge": "DIN 3601",
-    # Housings
     "enclosure": "IEC 60529", "bearing_retainer_cap": "DIN 625",
     "dome_cap": "DIN 1587", "chair": "EN 1729", "table": "EN 527",
-    # Piping
     "pipe_flange": "DIN 2501", "round_flange": "DIN 2501",
     "t_pipe_fitting": "DIN 2605", "pipe_elbow": "DIN 2605",
     "duct_elbow": "DIN 24147", "venturi_tube": "ISO 5167",
     "nozzle": "DIN 24154", "grease_nipple": "DIN 71412",
     "threaded_adapter": "ISO 228",
-    # Panels & Structural
     "i_beam": "EN 10034", "u_channel": "EN 10279", "t_slot_rail": "DIN 1013",
     "connector_faceplate": "IEC 60603",
 }
-
 
 CATEGORIES = {
     "Fasteners": [
@@ -98,16 +88,28 @@ CATEGORIES = {
     ],
 }
 
-# Category colours (muted, distinct)
+# Muted but distinct category palette (CS-Bench-ish)
 COLORS = {
-    "Fasteners":             "#1f4ed8",
-    "Gears & Transmission":  "#9333ea",
-    "Shafts & Revolved":     "#db2777",
-    "Springs":               "#f59e0b",
-    "Brackets & Mounts":     "#10b981",
-    "Housings & Containers": "#0ea5e9",
-    "Piping & Flanges":      "#ef4444",
-    "Panels & Structural":   "#64748b",
+    "Fasteners":             "#7c3aed",
+    "Gears & Transmission":  "#059669",
+    "Shafts & Revolved":     "#d97706",
+    "Springs":               "#dc2626",
+    "Brackets & Mounts":     "#2563eb",
+    "Housings & Containers": "#db2777",
+    "Piping & Flanges":      "#0891b2",
+    "Panels & Structural":   "#65a30d",
+}
+
+# Two-line breaks so text stays upright inside narrow sectors
+CAT_LABELS = {
+    "Fasteners":             "Fasteners",
+    "Gears & Transmission":  "Gears &\nTransmission",
+    "Shafts & Revolved":     "Shafts &\nRevolved",
+    "Springs":               "Springs",
+    "Brackets & Mounts":     "Brackets &\nMounts",
+    "Housings & Containers": "Housings &\nContainers",
+    "Piping & Flanges":      "Piping &\nFlanges",
+    "Panels & Structural":   "Panels &\nStructural",
 }
 
 
@@ -124,84 +126,148 @@ def main() -> None:
     total = sum(len(v) for v in CATEGORIES.values())
     assert total == 106, f"expected 106, got {total}"
 
-    fig, ax = plt.subplots(figsize=(11, 11), subplot_kw=dict(polar=True))
-    ax.set_theta_zero_location("N")
-    ax.set_theta_direction(-1)
+    # Wide canvas for word-cloud margins on both sides
+    fig, ax = plt.subplots(figsize=(18, 12))
+    XL, YL = 9.0, 6.0
+    ax.set_xlim(-XL, XL)
+    ax.set_ylim(-YL, YL)
+    ax.set_aspect("equal")
     ax.set_axis_off()
 
-    R_INNER = 0.45
-    R_CAT = 0.72
-    R_FAM_INNER = 0.72
-    R_FAM_OUTER = 1.08
+    R_HUB = 1.15
+    R_CAT_IN = R_HUB
+    R_CAT_OUT = 2.7
+    R_FAM_OUT = 3.15  # thin outer family color band
 
-    angle = 0.0
+    # Assign each category a sector; start at 90° (top), go clockwise
+    cat_angles: dict[str, tuple[float, float]] = {}
+    angle_deg = 90.0
     for cat, members in CATEGORIES.items():
         n = len(members)
-        span = 2 * math.pi * n / total
-        # category arc
-        ax.bar(angle + span / 2, R_CAT - R_INNER, width=span,
-               bottom=R_INNER, color=COLORS[cat],
-               edgecolor="white", linewidth=2, align="center")
+        span_deg = 360.0 * n / total
+        start = angle_deg - span_deg
+        end = angle_deg
+        cat_angles[cat] = (start, end)
 
-        # category label — curved along mid-radius of the category ring
-        mid = angle + span / 2
-        label_r = (R_INNER + R_CAT) / 2
-        rot = math.degrees(-mid) if math.pi / 2 < mid < 3 * math.pi / 2 else math.degrees(-mid)
-        # Simpler: just put text at mid angle, upright
-        lx = label_r * math.sin(mid)
-        ly = label_r * math.cos(mid)
-        ang_deg = math.degrees(mid)
-        text_rot = -ang_deg if ang_deg < 180 else 180 - ang_deg
-        ax.text(mid, label_r, f"{cat}\n({n})",
-                ha="center", va="center", fontsize=11,
-                fontweight="bold", color="white",
-                rotation=text_rot, rotation_mode="anchor")
+        # Category wedge
+        ax.add_patch(Wedge((0, 0), R_CAT_OUT, start, end,
+                           width=R_CAT_OUT - R_CAT_IN,
+                           facecolor=COLORS[cat],
+                           edgecolor="white", linewidth=2, zorder=3))
 
-        # family sub-wedges
-        fam_span = span / n
-        fam_color = lighten(COLORS[cat], 0.15)
-        for i, fam in enumerate(members):
-            fa = angle + fam_span * i
-            ax.bar(fa + fam_span / 2, R_FAM_OUTER - R_FAM_INNER,
-                   width=fam_span, bottom=R_FAM_INNER,
-                   color=fam_color, edgecolor="white", linewidth=0.8,
-                   align="center")
-            # family label — radial text outside
-            mid_fa = fa + fam_span / 2
-            txt_r = R_FAM_OUTER + 0.015
-            ang = math.degrees(mid_fa)
-            # make text readable: rotate along radius, flip if on bottom half
-            if ang <= 180:
-                rot = 90 - ang
-                ha = "left"
-            else:
-                rot = 270 - ang
-                ha = "right"
-            label = fam.replace("_", " ")
-            std = STANDARDS.get(fam, "")
-            if std:
-                label = f"{label} · {std}"
-            ax.text(mid_fa, txt_r, label,
-                    ha=ha, va="center", fontsize=7.2, color="#1f2937",
-                    rotation=rot, rotation_mode="anchor")
+        # Thin outer family colour band (one slice per family, no label)
+        fam_color = lighten(COLORS[cat], 0.28)
+        sub_span = span_deg / n
+        for i in range(n):
+            sub_start = start + i * sub_span
+            sub_end = sub_start + sub_span
+            ax.add_patch(Wedge((0, 0), R_FAM_OUT, sub_start, sub_end,
+                               width=R_FAM_OUT - R_CAT_OUT,
+                               facecolor=fam_color,
+                               edgecolor="white", linewidth=0.6, zorder=3))
 
-        angle += span
+        # Category label — upright, centered in the wedge
+        mid_rad = math.radians((start + end) / 2)
+        label_r = (R_CAT_IN + R_CAT_OUT) / 2
+        lx = label_r * math.cos(mid_rad)
+        ly = label_r * math.sin(mid_rad)
+        # Font size by sector span — big sectors get big labels
+        fs = 10.0 + min(4.0, span_deg / 15)
+        ax.text(lx, ly, CAT_LABELS[cat],
+                ha="center", va="center",
+                fontsize=fs, fontweight="bold",
+                color="white", zorder=5)
 
-    # central title
+        angle_deg -= span_deg
+
+    # Central hub
+    ax.add_patch(Circle((0, 0), R_HUB, facecolor="white",
+                        edgecolor="#1f2937", linewidth=1.8, zorder=4))
     std_count = len({v for v in STANDARDS.values() if v})
-    ax.text(0, 0, f"BenchCAD\n106 families\n· 8 categories ·\n{std_count} ISO/DIN/EN refs",
-            ha="center", va="center", fontsize=14, fontweight="bold",
-            color="#1f2937",
-            transform=ax.transData._b if False else ax.transData)
-    # simpler: place text in data coords at origin with radius 0
-    # (matplotlib polar accepts (theta=0, r=0) as center)
+    ax.text(0, 0.40, "BenchCAD", ha="center", va="center",
+            fontsize=17, fontweight="bold", color="#111827", zorder=6)
+    ax.text(0, 0.05, "106 families", ha="center", va="center",
+            fontsize=10.5, color="#1f2937", zorder=6)
+    ax.text(0, -0.22, "8 categories", ha="center", va="center",
+            fontsize=9.5, color="#4b5563", zorder=6)
+    ax.text(0, -0.48, f"{std_count} ISO / DIN / EN", ha="center", va="center",
+            fontsize=9.5, color="#4b5563", zorder=6)
 
-    ax.set_ylim(0, 1.35)
+    # ---- Word cloud of family names around the wheel ----
+    rng = random.Random(7)
+    placed: list[tuple[float, float, float, float]] = []
+
+    def overlaps(x: float, y: float, w: float, h: float) -> bool:
+        # keep clear of the wheel
+        if math.hypot(x, y) - max(w, h) * 0.5 < R_FAM_OUT + 0.25:
+            return True
+        for ex, ey, ew, eh in placed:
+            if abs(x - ex) * 2 < (w + ew + 0.12) and abs(y - ey) * 2 < (h + eh + 0.08):
+                return True
+        return False
+
+    # Longer labels first → easier packing
+    all_fams: list[tuple[str, str]] = [
+        (fam, cat) for cat, mems in CATEGORIES.items() for fam in mems
+    ]
+    all_fams.sort(key=lambda p: -len(p[0]))
+
+    unplaced: list[tuple[str, str]] = []
+    for fam, cat in all_fams:
+        label = fam.replace("_", " ")
+        fs = rng.uniform(8.8, 11.5)
+        # approximate text bbox (data units ≈ inches here with equal aspect)
+        w = len(label) * fs * 0.0085
+        h = fs * 0.018
+
+        start, end = cat_angles[cat]
+        mid_rad = math.radians((start + end) / 2)
+        half_span = math.radians(max((end - start) / 2, 12))
+
+        done = False
+        for _ in range(400):
+            r = rng.uniform(R_FAM_OUT + 0.45, min(XL, YL) * 1.05)
+            ang = mid_rad + rng.uniform(-half_span * 1.4, half_span * 1.4)
+            x = r * math.cos(ang)
+            y = r * math.sin(ang)
+            if abs(x) + w / 2 > XL - 0.1 or abs(y) + h / 2 > YL - 0.1:
+                continue
+            if overlaps(x, y, w, h):
+                continue
+            placed.append((x, y, w, h))
+            ax.text(x, y, label, ha="center", va="center",
+                    fontsize=fs, color=COLORS[cat],
+                    fontweight="medium", zorder=2)
+            done = True
+            break
+        if not done:
+            unplaced.append((fam, cat))
+
+    # Fallback pass: try anywhere in frame (outside wheel) for leftovers
+    for fam, cat in unplaced:
+        label = fam.replace("_", " ")
+        fs = rng.uniform(8.5, 10.5)
+        w = len(label) * fs * 0.0085
+        h = fs * 0.018
+        done = False
+        for _ in range(1000):
+            x = rng.uniform(-XL + w / 2 + 0.1, XL - w / 2 - 0.1)
+            y = rng.uniform(-YL + h / 2 + 0.1, YL - h / 2 - 0.1)
+            if overlaps(x, y, w, h):
+                continue
+            placed.append((x, y, w, h))
+            ax.text(x, y, label, ha="center", va="center",
+                    fontsize=fs, color=COLORS[cat],
+                    fontweight="medium", zorder=2)
+            done = True
+            break
+        if not done:
+            print(f"warn: could not place '{fam}'")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUT, format="svg", bbox_inches="tight",
-                pad_inches=0.1, transparent=True)
-    print(f"wrote {OUT}  ({OUT.stat().st_size//1024} KB)")
+                pad_inches=0.15, transparent=True)
+    print(f"wrote {OUT}  ({OUT.stat().st_size // 1024} KB)")
 
 
 if __name__ == "__main__":
