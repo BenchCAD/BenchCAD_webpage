@@ -45,71 +45,66 @@ STANDARDS = {
 }
 
 CATEGORIES = {
-    "Fasteners": [
+    "Fasteners & Hardware": [
         "bolt", "pan_head_screw", "hex_nut", "wing_nut", "tee_nut",
         "washer", "rivet", "eyebolt", "u_bolt", "hex_standoff",
         "standoff", "pcb_standoff_plate", "wall_anchor", "grommet",
         "snap_clip", "clevis_pin", "dowel_pin", "cotter_pin", "taper_pin",
         "circlip", "parallel_key", "knob", "ball_knob", "lobed_knob",
-        "pull_handle",
+        "pull_handle", "turnbuckle", "clevis", "j_hook",
     ],
-    "Gears & Transmission": [
+    "Motion & Transmission": [
         "spur_gear", "helical_gear", "bevel_gear", "worm_screw",
         "sprocket", "double_simplex_sprocket", "pulley", "handwheel",
         "cam", "ratchet_sector", "impeller", "propeller", "spline_hub",
+        "shaft_collar", "stepped_shaft", "hollow_tube", "tapered_boss",
+        "lathe_turned_part", "dog_bone", "twisted_drill", "spacer_ring",
+        "connecting_rod", "piston", "torus_link",
+        "coil_spring", "torsion_spring",
     ],
-    "Shafts & Revolved": [
-        "stepped_shaft", "hollow_tube", "dog_bone", "lathe_turned_part",
-        "twisted_drill", "tapered_boss", "connecting_rod", "piston",
-        "spacer_ring", "torus_link", "turnbuckle", "clevis", "j_hook",
-    ],
-    "Springs": ["coil_spring", "torsion_spring", "bellows"],
-    "Brackets & Mounts": [
+    "Structural & Mounting": [
         "l_bracket", "z_bracket", "gusseted_bracket", "twisted_bracket",
         "mounting_angle", "mounting_plate", "slotted_plate",
         "keyhole_plate", "locator_block", "pillow_block", "rib_plate",
-        "shaft_collar", "flat_link", "hinge", "dovetail_slide",
+        "flat_link", "hinge", "dovetail_slide",
+        "i_beam", "u_channel", "t_slot_rail", "rect_frame", "cruciform",
     ],
-    "Housings & Containers": [
+    "Fluid & Process": [
+        "pipe_flange", "round_flange", "t_pipe_fitting", "pipe_elbow",
+        "duct_elbow", "venturi_tube", "nozzle", "grease_nipple",
+        "threaded_adapter", "manifold_block", "bellows",
+    ],
+    "Panels & Sheet Metal": [
+        "waffle_plate", "vented_panel", "mesh_panel", "wire_grid",
+        "cable_routing_panel", "connector_faceplate", "sheet_metal_tray",
+        "star_blank",
+    ],
+    "Enclosures & Product Parts": [
         "enclosure", "fan_shroud", "heat_sink", "motor_end_cap",
         "bearing_retainer_cap", "dome_cap", "battery_holder", "phone_stand",
         "chair", "table", "bucket", "gridfinity_bin",
         "hex_key_organizer", "capsule",
     ],
-    "Piping & Flanges": [
-        "pipe_flange", "round_flange", "t_pipe_fitting", "pipe_elbow",
-        "duct_elbow", "venturi_tube", "nozzle", "grease_nipple",
-        "threaded_adapter", "manifold_block",
-    ],
-    "Panels & Structural": [
-        "i_beam", "u_channel", "t_slot_rail", "rect_frame", "waffle_plate",
-        "vented_panel", "mesh_panel", "wire_grid", "cable_routing_panel",
-        "connector_faceplate", "sheet_metal_tray", "cruciform", "star_blank",
-    ],
 }
 
-# Muted but distinct category palette (CS-Bench-ish)
+# 6 distinct hues
 COLORS = {
-    "Fasteners":             "#7c3aed",
-    "Gears & Transmission":  "#059669",
-    "Shafts & Revolved":     "#d97706",
-    "Springs":               "#dc2626",
-    "Brackets & Mounts":     "#2563eb",
-    "Housings & Containers": "#db2777",
-    "Piping & Flanges":      "#0891b2",
-    "Panels & Structural":   "#65a30d",
+    "Fasteners & Hardware":       "#7c3aed",
+    "Motion & Transmission":      "#059669",
+    "Structural & Mounting":      "#2563eb",
+    "Fluid & Process":            "#0891b2",
+    "Panels & Sheet Metal":       "#d97706",
+    "Enclosures & Product Parts": "#db2777",
 }
 
-# Two-line breaks so text stays upright inside narrow sectors
+# Two-line breaks for upright readability inside sectors
 CAT_LABELS = {
-    "Fasteners":             "Fasteners",
-    "Gears & Transmission":  "Gears &\nTransmission",
-    "Shafts & Revolved":     "Shafts &\nRevolved",
-    "Springs":               "Springs",
-    "Brackets & Mounts":     "Brackets &\nMounts",
-    "Housings & Containers": "Housings &\nContainers",
-    "Piping & Flanges":      "Piping &\nFlanges",
-    "Panels & Structural":   "Panels &\nStructural",
+    "Fasteners & Hardware":       "Fasteners &\nHardware",
+    "Motion & Transmission":      "Motion &\nTransmission",
+    "Structural & Mounting":      "Structural &\nMounting",
+    "Fluid & Process":            "Fluid &\nProcess",
+    "Panels & Sheet Metal":       "Panels &\nSheet Metal",
+    "Enclosures & Product Parts": "Enclosures &\nProduct Parts",
 }
 
 
@@ -127,17 +122,17 @@ def main() -> None:
     assert total == 106, f"expected 106, got {total}"
 
     # Wide canvas for word-cloud margins on both sides
-    fig, ax = plt.subplots(figsize=(18, 12))
-    XL, YL = 9.0, 6.0
+    fig, ax = plt.subplots(figsize=(22, 14))
+    XL, YL = 11.0, 7.0
     ax.set_xlim(-XL, XL)
     ax.set_ylim(-YL, YL)
     ax.set_aspect("equal")
     ax.set_axis_off()
 
-    R_HUB = 1.15
+    R_HUB = 1.45
     R_CAT_IN = R_HUB
-    R_CAT_OUT = 2.7
-    R_FAM_OUT = 3.15  # thin outer family color band
+    R_CAT_OUT = 3.3
+    R_FAM_OUT = 3.8  # thin outer family color band
 
     # Assign each category a sector; start at 90° (top), go clockwise
     cat_angles: dict[str, tuple[float, float]] = {}
@@ -172,7 +167,7 @@ def main() -> None:
         lx = label_r * math.cos(mid_rad)
         ly = label_r * math.sin(mid_rad)
         # Font size by sector span — big sectors get big labels
-        fs = 14.0 + min(5.0, span_deg / 14)
+        fs = 16.0 + min(6.0, span_deg / 12)
         ax.text(lx, ly, CAT_LABELS[cat],
                 ha="center", va="center",
                 fontsize=fs, fontweight="bold",
@@ -184,14 +179,14 @@ def main() -> None:
     ax.add_patch(Circle((0, 0), R_HUB, facecolor="white",
                         edgecolor="#1f2937", linewidth=1.8, zorder=4))
     std_count = len({v for v in STANDARDS.values() if v})
-    ax.text(0, 0.45, "BenchCAD", ha="center", va="center",
-            fontsize=22, fontweight="bold", color="#111827", zorder=6)
-    ax.text(0, 0.08, "106 families", ha="center", va="center",
-            fontsize=13, color="#1f2937", zorder=6)
-    ax.text(0, -0.22, "8 categories", ha="center", va="center",
-            fontsize=12, color="#4b5563", zorder=6)
-    ax.text(0, -0.52, f"{std_count} ISO / DIN / EN", ha="center", va="center",
-            fontsize=12, color="#4b5563", zorder=6)
+    ax.text(0, 0.58, "BenchCAD", ha="center", va="center",
+            fontsize=27, fontweight="bold", color="#111827", zorder=6)
+    ax.text(0, 0.15, "106 families", ha="center", va="center",
+            fontsize=15, color="#1f2937", zorder=6)
+    ax.text(0, -0.22, "6 categories", ha="center", va="center",
+            fontsize=14, color="#4b5563", zorder=6)
+    ax.text(0, -0.62, f"{std_count} ISO / DIN / EN", ha="center", va="center",
+            fontsize=14, color="#4b5563", zorder=6)
 
     # ---- Word cloud of family names around the wheel ----
     rng = random.Random(7)
@@ -206,16 +201,28 @@ def main() -> None:
                 return True
         return False
 
-    # Longer labels first → easier packing
     all_fams: list[tuple[str, str]] = [
         (fam, cat) for cat, mems in CATEGORIES.items() for fam in mems
     ]
-    all_fams.sort(key=lambda p: -len(p[0]))
+
+    # Non-uniform 3-tier font sizes — dramatic variation like a word cloud
+    fs_for_fam: dict[str, float] = {}
+    for fam, _cat in all_fams:
+        tier = rng.random()
+        if tier < 0.15:                 # ~16 big words
+            fs_for_fam[fam] = rng.uniform(20.0, 25.0)
+        elif tier < 0.55:               # ~42 medium
+            fs_for_fam[fam] = rng.uniform(14.0, 18.0)
+        else:                           # ~48 small
+            fs_for_fam[fam] = rng.uniform(10.0, 13.0)
+
+    # Biggest first → hardest to place; longer strings next
+    all_fams.sort(key=lambda p: (-fs_for_fam[p[0]], -len(p[0])))
 
     unplaced: list[tuple[str, str]] = []
     for fam, cat in all_fams:
         label = fam.replace("_", " ")
-        fs = rng.uniform(11.5, 15.5)
+        fs = fs_for_fam[fam]
         # approximate text bbox (data units ≈ inches here with equal aspect)
         w = len(label) * fs * 0.0085
         h = fs * 0.018
@@ -225,9 +232,9 @@ def main() -> None:
         half_span = math.radians(max((end - start) / 2, 12))
 
         done = False
-        for _ in range(400):
-            r = rng.uniform(R_FAM_OUT + 0.45, min(XL, YL) * 1.05)
-            ang = mid_rad + rng.uniform(-half_span * 1.4, half_span * 1.4)
+        for _ in range(500):
+            r = rng.uniform(R_FAM_OUT + 0.55, min(XL, YL) * 1.1)
+            ang = mid_rad + rng.uniform(-half_span * 1.5, half_span * 1.5)
             x = r * math.cos(ang)
             y = r * math.sin(ang)
             if abs(x) + w / 2 > XL - 0.1 or abs(y) + h / 2 > YL - 0.1:
@@ -246,11 +253,12 @@ def main() -> None:
     # Fallback pass: try anywhere in frame (outside wheel) for leftovers
     for fam, cat in unplaced:
         label = fam.replace("_", " ")
-        fs = rng.uniform(11.0, 13.5)
+        # smaller fallback size so packing is easier
+        fs = min(fs_for_fam[fam], 12.5)
         w = len(label) * fs * 0.0085
         h = fs * 0.018
         done = False
-        for _ in range(1000):
+        for _ in range(1500):
             x = rng.uniform(-XL + w / 2 + 0.1, XL - w / 2 - 0.1)
             y = rng.uniform(-YL + h / 2 + 0.1, YL - h / 2 - 0.1)
             if overlaps(x, y, w, h):

@@ -88,19 +88,21 @@
 
 <!-- TEASER: single example + distribution -->
 <section class="hero teaser">
-  <div class="container is-max-desktop">
+  <div class="container is-fluid" style="max-width:1400px;">
     <div class="hero-body">
-      <div class="columns is-vcentered">
-        <div class="column is-one-third has-text-centered">
+      <div class="columns is-vcentered is-mobile is-centered" style="margin-bottom:1.5rem;">
+        <div class="column is-narrow has-text-centered">
           <img src="static/cases/wing_nut.webp" alt="wing_nut rotating 3D render" class="hero-example">
-          <p class="stat-number" style="font-size:2.4rem;margin-top:0.75rem;">32,382</p>
-          <p class="stat-label">verified samples</p>
-          <p class="hero-caption">A <b>wing_nut</b> sample — every family ships with ground-truth CadQuery code, STEP, mesh, 4-view composite, and numeric QA pairs.</p>
+          <p class="hero-caption" style="max-width:220px;margin-left:auto;margin-right:auto;">A <b>wing_nut</b> sample — ground-truth CadQuery, STEP, mesh, 4-view, and numeric QA.</p>
         </div>
-        <div class="column is-two-thirds has-text-centered">
-          <img src="static/images/family_distribution.svg" alt="BenchCAD family distribution — 106 families across 8 categories" class="hero-distribution">
-          <p class="hero-caption">106 parametric families across 8 mechanical categories, grounded in 54 ISO / DIN / EN specifications.</p>
+        <div class="column is-narrow has-text-centered" style="padding:0 2.5rem;">
+          <p class="stat-number" style="font-size:3.6rem;">32,382</p>
+          <p class="stat-label" style="font-size:1.1rem;">verified samples</p>
         </div>
+      </div>
+      <div class="has-text-centered">
+        <img src="static/images/family_distribution.svg" alt="BenchCAD family distribution — 106 families across 6 industrial sectors" class="hero-distribution">
+        <p class="hero-caption" style="max-width:960px;margin-left:auto;margin-right:auto;">106 parametric families spanning 6 industrial sectors — fasteners &amp; hardware, motion &amp; transmission, structural &amp; mounting, fluid &amp; process, panels &amp; sheet metal, enclosures &amp; product parts — grounded in 54 ISO / DIN / EN specifications.</p>
       </div>
       <h2 class="subtitle has-text-centered" style="margin-top:2rem;">
         <span class="benchcad-logo">BenchCAD</span> evaluates VLMs / LLMs on four parallel CAD tasks —
@@ -237,7 +239,7 @@
 
     <div class="content has-text-centered">
       <p>
-        Families span fasteners, transmission parts, enclosures, sheet metal, springs, brackets, and parametric primitives.
+        Families span six industrial sectors: fasteners &amp; hardware, motion &amp; transmission, structural &amp; mounting, fluid &amp; process, panels &amp; sheet metal, and enclosures &amp; product parts.
       </p>
     </div>
   </div>
