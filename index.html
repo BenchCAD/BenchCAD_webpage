@@ -302,61 +302,14 @@
 <!-- LEADERBOARD -->
 <section class="section" id="leaderboard" style="background:#f7f7fa;">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Leaderboard <span class="tag is-warning is-light" style="vertical-align:middle;margin-left:0.5rem;">Preview</span></h2>
+    <h2 class="title is-3 has-text-centered">Leaderboard <span class="tag is-success is-light" style="vertical-align:middle;margin-left:0.5rem;">Live</span></h2>
     <p class="has-text-centered has-text-grey">
-      Higher is better. Image → Code reports mean IoU; Image → QA / Code → QA / Edit Code report accuracy.
-      <br><i>Preview results — frozen on a small held-out subset; full eval forthcoming.</i>
+      Commercial frontier models across the four BenchCAD tasks. Higher is better. <b>Solid</b> markers are flagship models; <b>hollow</b> markers are non-flagship variants from the same vendor.
+      <br><i>Auto-updated hourly from the official results sheet.</i>
     </p>
 
-    <div class="table-container">
-      <table class="table is-striped is-hoverable is-fullwidth has-text-centered">
-        <thead>
-          <tr>
-            <th class="has-text-left">Model</th>
-            <th>Image → Code ↑</th>
-            <th>Image → QA ↑</th>
-            <th>Code → QA ↑</th>
-            <th>Edit Code ↑</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="has-text-left"><b>GPT-5.2 Pro</b></td>
-            <td>0.355</td>
-            <td>0.748</td>
-            <td>0.801</td>
-            <td><b>0.767</b></td>
-          </tr>
-          <tr>
-            <td class="has-text-left">Claude Opus 4.7</td>
-            <td><b>0.456</b></td>
-            <td><b>0.841</b></td>
-            <td><b>0.887</b></td>
-            <td>0.740</td>
-          </tr>
-          <tr>
-            <td class="has-text-left">Claude Sonnet 4.6</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>0.730</td>
-          </tr>
-          <tr>
-            <td class="has-text-left">Gemini 3.1 Pro</td>
-            <td>0.388</td>
-            <td>0.782</td>
-            <td>0.824</td>
-            <td>0.691</td>
-          </tr>
-          <tr>
-            <td class="has-text-left">Gemini 2.5 Pro</td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>0.554</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="has-text-centered" style="margin-top:1.5rem;">
+      <img src="static/images/leaderboard.svg" alt="BenchCAD leaderboard chart — commercial frontier models across four tasks" style="max-width:100%;width:100%;height:auto;">
     </div>
 
     <p class="has-text-centered" style="margin-top:1rem;">
