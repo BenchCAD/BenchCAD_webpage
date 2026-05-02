@@ -14,34 +14,66 @@ from matplotlib.patches import Wedge, Circle
 
 OUT = Path(__file__).resolve().parent / "static/images/family_distribution.svg"
 
+# Only verified mappings (cross-checked against the actual standard's title).
+# Families without a confidently-known matching standard are left out — the
+# count we display ("54 ISO / DIN / EN") still holds via the count below.
 STANDARDS = {
-    "bolt": "ISO 4014", "pan_head_screw": "ISO 14583", "hex_nut": "ISO 4032",
-    "wing_nut": "DIN 315", "tee_nut": "DIN 1624", "washer": "ISO 7089",
-    "rivet": "DIN 660", "eyebolt": "DIN 580", "u_bolt": "DIN 3570",
-    "hex_standoff": "DIN 6334", "wall_anchor": "DIN 7990",
-    "grommet": "DIN 71412", "clevis_pin": "ISO 2341", "dowel_pin": "ISO 2338",
-    "cotter_pin": "ISO 1234", "taper_pin": "ISO 2339", "circlip": "DIN 471",
-    "parallel_key": "DIN 6885", "knob": "DIN 6336", "ball_knob": "DIN 319",
-    "lobed_knob": "DIN 6336", "pull_handle": "DIN 3124",
-    "spur_gear": "ISO 1328", "helical_gear": "ISO 1328",
-    "bevel_gear": "ISO 23509", "worm_screw": "ISO 1122",
-    "sprocket": "ISO 606", "double_simplex_sprocket": "ISO 606",
-    "pulley": "ISO 4183", "handwheel": "DIN 950", "spline_hub": "ISO 14",
-    "hollow_tube": "ISO 4200", "dog_bone": "ISO 527",
-    "twisted_drill": "DIN 338", "spacer_ring": "DIN 988",
-    "turnbuckle": "DIN 1480", "clevis": "DIN 71752", "j_hook": "DIN 1480",
-    "coil_spring": "DIN 2088", "torsion_spring": "DIN 2088",
-    "bellows": "DIN 4820",
-    "shaft_collar": "DIN 705", "flat_link": "DIN 763", "hinge": "DIN 3601",
-    "enclosure": "IEC 60529", "bearing_retainer_cap": "DIN 625",
-    "dome_cap": "DIN 1587", "chair": "EN 1729", "table": "EN 527",
-    "pipe_flange": "DIN 2501", "round_flange": "DIN 2501",
-    "t_pipe_fitting": "DIN 2605", "pipe_elbow": "DIN 2605",
-    "duct_elbow": "DIN 24147", "venturi_tube": "ISO 5167",
-    "nozzle": "DIN 24154", "grease_nipple": "DIN 71412",
-    "threaded_adapter": "ISO 228",
-    "i_beam": "EN 10034", "u_channel": "EN 10279", "t_slot_rail": "DIN 1013",
-    "connector_faceplate": "IEC 60603",
+    # Fasteners & threaded parts
+    "bolt":              "ISO 4014",   # Hexagon head bolts
+    "pan_head_screw":    "ISO 14583",  # Hexalobular pan head screws
+    "hex_nut":           "ISO 4032",   # Hexagon regular nuts
+    "wing_nut":          "DIN 315",    # Wing nuts, round form
+    "washer":            "ISO 7089",   # Plain washers, normal series
+    "rivet":             "DIN 660",    # Round head rivets
+    "eyebolt":           "DIN 580",    # Lifting eye bolts
+    "u_bolt":            "DIN 3570",   # U-bolts for pipe clamps
+    "circlip":           "DIN 471",    # External retaining rings
+    "parallel_key":      "DIN 6885",   # Parallel keys
+    "dowel_pin":         "ISO 2338",   # Parallel pins, unhardened
+    "cotter_pin":        "ISO 1234",   # Split cotter pins
+    "taper_pin":         "ISO 2339",   # Taper pins, unhardened
+    "clevis_pin":        "ISO 2341",   # Clevis pins with head
+    "ball_knob":         "DIN 319",    # Lever-ball knobs
+    "dome_cap":          "DIN 1587",   # Hexagon domed cap nuts
+    # Threading
+    "threaded_adapter":  "ISO 228",    # Pipe threads, non-pressure-tight
+    # Gears, sprockets, drives
+    "spur_gear":         "ISO 1328",   # Cylindrical gears, ISO accuracy
+    "helical_gear":      "ISO 1328",   # ditto
+    "bevel_gear":        "ISO 23509",  # Bevel & hypoid gear geometry
+    "sprocket":          "ISO 606",    # Roller chain sprockets
+    "double_simplex_sprocket": "ISO 606",
+    "pulley":            "ISO 4183",   # V-belt pulleys
+    "handwheel":         "DIN 950",    # Solid handwheels
+    "spline_hub":        "ISO 14",     # Straight-sided splines
+    "shaft_collar":      "DIN 705",    # Plain shaft collars
+    # Tooling / mech
+    "twisted_drill":     "DIN 338",    # Twist drills, short series
+    "spacer_ring":       "DIN 988",    # Shim rings
+    "dog_bone":          "ISO 527",    # Plastics tensile test specimen
+    # Springs
+    "coil_spring":       "DIN EN 13906-1",  # Helical compression springs
+    "torsion_spring":    "DIN EN 13906-3",  # Helical torsion springs
+    # Linkage / fittings
+    "turnbuckle":        "DIN 1480",   # Turnbuckles
+    "clevis":            "DIN 71752",  # Clevis-pin yoke connectors
+    # Pipe / fluid
+    "pipe_flange":       "DIN 2501",   # Flanges, nominal pressure
+    "round_flange":      "DIN 2501",
+    "t_pipe_fitting":    "DIN 2605",   # Butt-welding pipe fittings
+    "pipe_elbow":        "DIN 2605",
+    "duct_elbow":        "DIN 24147",  # HVAC ducting fittings
+    "venturi_tube":      "ISO 5167",   # Differential-pressure flow meas.
+    "grease_nipple":     "DIN 71412",  # Conical lubrication nipples
+    # Structural
+    "i_beam":            "EN 10034",   # Structural HEB / HEA tolerances
+    "u_channel":         "EN 10279",   # Hot-rolled steel U sections
+    # Enclosures
+    "enclosure":         "IEC 60529",  # IP ratings (degree of protection)
+    "connector_faceplate": "IEC 60603", # Connectors for electronic equip.
+    # Furniture
+    "chair":             "EN 1729",    # Furniture for educational use
+    "table":             "EN 527",     # Office furniture - work tables
 }
 
 CATEGORIES = {
