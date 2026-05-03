@@ -74,6 +74,10 @@ STANDARDS = {
     # Furniture
     "chair":             "EN 1729",    # Furniture for educational use
     "table":             "EN 527",     # Office furniture - work tables
+    # ASME (US mechanical engineering standards)
+    "mounting_plate":    "ASME Y14.5",  # Dimensioning and Tolerancing (GD&T)
+    "manifold_block":    "ASME B16.11", # Forged fittings, socket-welding & threaded
+    "stepped_shaft":     "ASME B17.1",  # Keys and Keyseats
 }
 
 CATEGORIES = {
@@ -229,7 +233,7 @@ def main() -> None:
             fontsize=12, color="#1f2937", zorder=6)
     ax.text(0, -0.12, "7 categories", ha="center", va="center",
             fontsize=11, color="#374151", zorder=6)
-    ax.text(0, -0.45, f"{std_count} ISO / DIN / EN", ha="center", va="center",
+    ax.text(0, -0.45, f"{std_count} ISO / DIN / EN / etc.", ha="center", va="center",
             fontsize=11, color="#374151", zorder=6)
 
     # ---- Word cloud of family names around the wheel ----
