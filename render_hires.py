@@ -65,7 +65,7 @@ AZ_DEG = 45.0
 CAM_DIST = 1.9
 LOOKAT = np.array([0.5, 0.5, 0.5])
 MESH_COLOR = np.array([129, 216, 208]) / 255.0   # Tiffany blue (lightened for shading)
-EDGE_COLOR = (0.12, 0.12, 0.12)
+EDGE_COLOR = (0.0, 0.0, 0.0)
 
 
 def cam_eye_for(elev_deg: float, az_deg: float, dist: float = CAM_DIST) -> np.ndarray:
