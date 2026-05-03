@@ -198,6 +198,7 @@ def render_iso(verts: np.ndarray, tris: np.ndarray,
     edges.SetFeatureAngle(35.0)
     em = vtk.vtkPolyDataMapper()
     em.SetInputConnection(edges.GetOutputPort())
+    em.ScalarVisibilityOff()         # use actor color, not mesh scalars
     ea = vtk.vtkActor()
     ea.SetMapper(em)
     ep = ea.GetProperty()
