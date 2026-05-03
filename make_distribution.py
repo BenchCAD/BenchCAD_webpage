@@ -153,13 +153,16 @@ def lighten(hex_color: str, amount: float = 0.35) -> str:
     return f"#{r:02x}{g:02x}{b:02x}"
 
 
-def darken(hex_color: str, amount: float = 0.30) -> str:
+def darken(hex_color: str, amount: float = 0.20) -> str:
+    """Reduce HLS lightness by `amount` while preserving hue + saturation —
+    keeps the color from going gray as it darkens."""
+    import colorsys
     h = hex_color.lstrip("#")
-    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
-    r = int(r * (1.0 - amount))
-    g = int(g * (1.0 - amount))
-    b = int(b * (1.0 - amount))
-    return f"#{r:02x}{g:02x}{b:02x}"
+    r, g, b = int(h[0:2], 16) / 255, int(h[2:4], 16) / 255, int(h[4:6], 16) / 255
+    H, L, S = colorsys.rgb_to_hls(r, g, b)
+    L = max(0.0, L - amount)
+    nr, ng, nb = colorsys.hls_to_rgb(H, L, S)
+    return f"#{int(nr*255):02x}{int(ng*255):02x}{int(nb*255):02x}"
 
 
 def main() -> None:
@@ -293,7 +296,7 @@ def main() -> None:
                 continue
             placed.append((x, y, w, h))
             ax.text(x, y, label, ha="center", va="center",
-                    fontsize=fs, color=darken(COLORS[cat], 0.15),
+                    fontsize=fs, color=darken(COLORS[cat], 0.20),
                     fontweight="bold", zorder=2)
             done = True
             break
@@ -315,7 +318,7 @@ def main() -> None:
                 continue
             placed.append((x, y, w, h))
             ax.text(x, y, label, ha="center", va="center",
-                    fontsize=fs, color=darken(COLORS[cat], 0.15),
+                    fontsize=fs, color=darken(COLORS[cat], 0.20),
                     fontweight="bold", zorder=2)
             done = True
             break
