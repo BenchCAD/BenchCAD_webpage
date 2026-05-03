@@ -75,9 +75,11 @@ STANDARDS = {
     "chair":             "EN 1729",    # Furniture for educational use
     "table":             "EN 527",     # Office furniture - work tables
     # ASME (US mechanical engineering standards)
-    "mounting_plate":    "ASME Y14.5",  # Dimensioning and Tolerancing (GD&T)
-    "manifold_block":    "ASME B16.11", # Forged fittings, socket-welding & threaded
-    "stepped_shaft":     "ASME B17.1",  # Keys and Keyseats
+    "mounting_plate":    "ASME Y14.5",   # Dimensioning and Tolerancing (GD&T)
+    "manifold_block":    "ASME B16.11",  # Forged fittings, socket-welding & threaded
+    "stepped_shaft":     "ASME B17.1",   # Keys and Keyseats
+    "hollow_tube":       "ASME B36.10M", # Welded and seamless wrought steel pipe
+    "flat_link":         "ASME B29.1",   # Precision power transmission roller chains
 }
 
 CATEGORIES = {
@@ -129,13 +131,13 @@ CATEGORIES = {
 # 7 hues — pastel/muted versions (same hue identity as the saturated variants
 # they replace; lightness ~70%, saturation ~45%).
 COLORS = {
-    "Fasteners":    "#af94e9",   # violet  (+15% sat)
-    "Hardware":     "#df99e6",   # magenta (+15% sat)
-    "Transmission": "#89d8b1",   # green   (+15% sat)
-    "Structural":   "#8bb1f1",   # blue    (+15% sat)
-    "Fluid":        "#87cee1",   # cyan    (+15% sat)
-    "Panels":       "#f2c686",   # peach   (+15% sat)
-    "Enclosures":   "#f09ac1",   # pink    (+15% sat)
+    "Fasteners":    "#ac8def",   # violet  (+25% sat total)
+    "Hardware":     "#e492ec",   # magenta (+25% sat total)
+    "Transmission": "#81dfb1",   # green   (+25% sat total)
+    "Structural":   "#84aff7",   # blue    (+25% sat total)
+    "Fluid":        "#7fd2e8",   # cyan    (+25% sat total)
+    "Panels":       "#f8c77f",   # peach   (+25% sat total)
+    "Enclosures":   "#f594c0",   # pink    (+25% sat total)
 }
 
 # Single-word labels — one line, easier to rotate tangentially
