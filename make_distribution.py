@@ -129,13 +129,13 @@ CATEGORIES = {
 # 7 hues — pastel/muted versions (same hue identity as the saturated variants
 # they replace; lightness ~70%, saturation ~45%).
 COLORS = {
-    "Fasteners":    "#b39ee0",   # muted violet
-    "Hardware":     "#d8a3dd",   # dusty magenta
-    "Transmission": "#95cdb1",   # sage green
-    "Structural":   "#95b4e8",   # powder blue
-    "Fluid":        "#93c8d6",   # soft cyan
-    "Panels":       "#e9c590",   # peach
-    "Enclosures":   "#e8a3c2",   # rose pink
+    "Fasteners":    "#af94e9",   # violet  (+15% sat)
+    "Hardware":     "#df99e6",   # magenta (+15% sat)
+    "Transmission": "#89d8b1",   # green   (+15% sat)
+    "Structural":   "#8bb1f1",   # blue    (+15% sat)
+    "Fluid":        "#87cee1",   # cyan    (+15% sat)
+    "Panels":       "#f2c686",   # peach   (+15% sat)
+    "Enclosures":   "#f09ac1",   # pink    (+15% sat)
 }
 
 # Single-word labels — one line, easier to rotate tangentially
