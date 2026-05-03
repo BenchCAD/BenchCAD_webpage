@@ -147,6 +147,15 @@ def lighten(hex_color: str, amount: float = 0.35) -> str:
     return f"#{r:02x}{g:02x}{b:02x}"
 
 
+def darken(hex_color: str, amount: float = 0.30) -> str:
+    h = hex_color.lstrip("#")
+    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    r = int(r * (1.0 - amount))
+    g = int(g * (1.0 - amount))
+    b = int(b * (1.0 - amount))
+    return f"#{r:02x}{g:02x}{b:02x}"
+
+
 def main() -> None:
     total = sum(len(v) for v in CATEGORIES.values())
     assert total == 106, f"expected 106, got {total}"
@@ -206,7 +215,7 @@ def main() -> None:
                 ha="center", va="center",
                 rotation=rot, rotation_mode="anchor",
                 fontsize=fs, fontweight="bold",
-                color="#374151", zorder=5)
+                color="#111827", zorder=5)
 
         angle_deg -= span_deg
 
@@ -215,13 +224,13 @@ def main() -> None:
                         edgecolor="#d1d5db", linewidth=1.0, zorder=4))
     std_count = len({v for v in STANDARDS.values() if v})
     ax.text(0, 0.55, "BenchCAD", ha="center", va="center",
-            fontsize=20, fontweight="bold", color="#374151", zorder=6)
+            fontsize=20, fontweight="bold", color="#111827", zorder=6)
     ax.text(0, 0.18, "106 families", ha="center", va="center",
-            fontsize=12, color="#4b5563", zorder=6)
+            fontsize=12, color="#1f2937", zorder=6)
     ax.text(0, -0.12, "7 categories", ha="center", va="center",
-            fontsize=11, color="#6b7280", zorder=6)
+            fontsize=11, color="#374151", zorder=6)
     ax.text(0, -0.45, f"{std_count} ISO / DIN / EN", ha="center", va="center",
-            fontsize=11, color="#6b7280", zorder=6)
+            fontsize=11, color="#374151", zorder=6)
 
     # ---- Word cloud of family names around the wheel ----
     rng = random.Random(7)
@@ -278,7 +287,7 @@ def main() -> None:
                 continue
             placed.append((x, y, w, h))
             ax.text(x, y, label, ha="center", va="center",
-                    fontsize=fs, color=COLORS[cat],
+                    fontsize=fs, color=darken(COLORS[cat], 0.35),
                     fontweight="regular", zorder=2)
             done = True
             break
@@ -300,7 +309,7 @@ def main() -> None:
                 continue
             placed.append((x, y, w, h))
             ax.text(x, y, label, ha="center", va="center",
-                    fontsize=fs, color=COLORS[cat],
+                    fontsize=fs, color=darken(COLORS[cat], 0.35),
                     fontweight="regular", zorder=2)
             done = True
             break
