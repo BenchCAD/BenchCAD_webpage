@@ -17,7 +17,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent
 PARQUET = Path.home() / ".cache/huggingface/hub/datasets--BenchCAD--cad_bench/snapshots/6bf222ee20d0e2e2a74d12cdaa52a3b994ca0175/data/test-00000-of-00001.parquet"
-OUT_DIR = Path("/tmp/benchcad_picks")
+OUT_DIR = ROOT / "previews"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 USED = {
@@ -25,9 +25,9 @@ USED = {
     "impeller", "bellows", "heat_sink", "eyebolt", "turnbuckle", "hinge",
     "ratchet_sector", "double_simplex_sprocket", "t_pipe_fitting",
     "lathe_turned_part", "spline_hub", "fan_shroud", "wing_nut",
-    # Already chosen by the user from the previous pass
+    # Already chosen by the user from the previous pass (Take 2: 1,2,7,10,18,24,27)
     "helical_gear", "sprocket", "pipe_elbow", "handwheel",
-    "motor_end_cap", "pulley", "manifold_block",
+    "wall_anchor", "pulley", "round_flange",
 }
 
 # Tiered op rarity. Tier-1 ops (sweep/loft/twistExtrude/torus) produce

@@ -27,9 +27,9 @@ from vtk.util.numpy_support import numpy_to_vtk
 
 ROOT = Path(__file__).resolve().parent
 PARQUET = Path.home() / ".cache/huggingface/hub/datasets--BenchCAD--cad_bench/snapshots/6bf222ee20d0e2e2a74d12cdaa52a3b994ca0175/data/test-00000-of-00001.parquet"
-HIRES_DIR = Path("/tmp/benchcad_picks/hires")
+HIRES_DIR = ROOT / "previews/hires"
 HIRES_DIR.mkdir(parents=True, exist_ok=True)
-COMP_PATH = Path("/tmp/benchcad_picks/hires_composite.png")
+COMP_PATH = ROOT / "previews/hires_composite.png"
 
 sys.path.insert(0, str(ROOT))
 from make_distribution import STANDARDS  # noqa: E402
