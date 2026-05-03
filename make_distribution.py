@@ -122,15 +122,16 @@ CATEGORIES = {
     ],
 }
 
-# 7 distinct hues (Fasteners/Hardware split out)
+# 7 hues — pastel/muted versions (same hue identity as the saturated variants
+# they replace; lightness ~70%, saturation ~45%).
 COLORS = {
-    "Fasteners":    "#7c3aed",
-    "Hardware":     "#c026d3",
-    "Transmission": "#059669",
-    "Structural":   "#2563eb",
-    "Fluid":        "#0891b2",
-    "Panels":       "#d97706",
-    "Enclosures":   "#db2777",
+    "Fasteners":    "#b39ee0",   # muted violet
+    "Hardware":     "#d8a3dd",   # dusty magenta
+    "Transmission": "#95cdb1",   # sage green
+    "Structural":   "#95b4e8",   # powder blue
+    "Fluid":        "#93c8d6",   # soft cyan
+    "Panels":       "#e9c590",   # peach
+    "Enclosures":   "#e8a3c2",   # rose pink
 }
 
 # Single-word labels — one line, easier to rotate tangentially
@@ -173,14 +174,14 @@ def main() -> None:
         end = angle_deg
         cat_angles[cat] = (start, end)
 
-        # Category wedge
+        # Category wedge — soft cream divider instead of harsh white
         ax.add_patch(Wedge((0, 0), R_CAT_OUT, start, end,
                            width=R_CAT_OUT - R_CAT_IN,
                            facecolor=COLORS[cat],
-                           edgecolor="white", linewidth=2, zorder=3))
+                           edgecolor="#fafafa", linewidth=1.2, zorder=3))
 
         # Thin outer family colour band (one slice per family, no label)
-        fam_color = lighten(COLORS[cat], 0.28)
+        fam_color = lighten(COLORS[cat], 0.45)
         sub_span = span_deg / n
         for i in range(n):
             sub_start = start + i * sub_span
@@ -188,7 +189,7 @@ def main() -> None:
             ax.add_patch(Wedge((0, 0), R_FAM_OUT, sub_start, sub_end,
                                width=R_FAM_OUT - R_CAT_OUT,
                                facecolor=fam_color,
-                               edgecolor="white", linewidth=0.6, zorder=3))
+                               edgecolor="#fafafa", linewidth=0.4, zorder=3))
 
         # Category label — rotated to follow the arc tangent (CS-Bench style)
         mid_deg = (start + end) / 2
@@ -205,22 +206,22 @@ def main() -> None:
                 ha="center", va="center",
                 rotation=rot, rotation_mode="anchor",
                 fontsize=fs, fontweight="bold",
-                color="white", zorder=5)
+                color="#374151", zorder=5)
 
         angle_deg -= span_deg
 
-    # Central hub
+    # Central hub — soft gray stroke
     ax.add_patch(Circle((0, 0), R_HUB, facecolor="white",
-                        edgecolor="#1f2937", linewidth=1.8, zorder=4))
+                        edgecolor="#d1d5db", linewidth=1.0, zorder=4))
     std_count = len({v for v in STANDARDS.values() if v})
-    ax.text(0, 0.58, "BenchCAD", ha="center", va="center",
-            fontsize=27, fontweight="bold", color="#111827", zorder=6)
-    ax.text(0, 0.15, "106 families", ha="center", va="center",
-            fontsize=15, color="#1f2937", zorder=6)
-    ax.text(0, -0.22, "7 categories", ha="center", va="center",
-            fontsize=14, color="#4b5563", zorder=6)
-    ax.text(0, -0.62, f"{std_count} ISO / DIN / EN", ha="center", va="center",
-            fontsize=14, color="#4b5563", zorder=6)
+    ax.text(0, 0.55, "BenchCAD", ha="center", va="center",
+            fontsize=20, fontweight="bold", color="#374151", zorder=6)
+    ax.text(0, 0.18, "106 families", ha="center", va="center",
+            fontsize=12, color="#4b5563", zorder=6)
+    ax.text(0, -0.12, "7 categories", ha="center", va="center",
+            fontsize=11, color="#6b7280", zorder=6)
+    ax.text(0, -0.45, f"{std_count} ISO / DIN / EN", ha="center", va="center",
+            fontsize=11, color="#6b7280", zorder=6)
 
     # ---- Word cloud of family names around the wheel ----
     rng = random.Random(7)
@@ -278,7 +279,7 @@ def main() -> None:
             placed.append((x, y, w, h))
             ax.text(x, y, label, ha="center", va="center",
                     fontsize=fs, color=COLORS[cat],
-                    fontweight="medium", zorder=2)
+                    fontweight="regular", zorder=2)
             done = True
             break
         if not done:
@@ -300,7 +301,7 @@ def main() -> None:
             placed.append((x, y, w, h))
             ax.text(x, y, label, ha="center", va="center",
                     fontsize=fs, color=COLORS[cat],
-                    fontweight="medium", zorder=2)
+                    fontweight="regular", zorder=2)
             done = True
             break
         if not done:
