@@ -288,7 +288,7 @@ def main() -> None:
             placed.append((x, y, w, h))
             ax.text(x, y, label, ha="center", va="center",
                     fontsize=fs, color=darken(COLORS[cat], 0.15),
-                    fontweight="regular", zorder=2)
+                    fontweight="bold", zorder=2)
             done = True
             break
         if not done:
@@ -310,7 +310,7 @@ def main() -> None:
             placed.append((x, y, w, h))
             ax.text(x, y, label, ha="center", va="center",
                     fontsize=fs, color=darken(COLORS[cat], 0.15),
-                    fontweight="regular", zorder=2)
+                    fontweight="bold", zorder=2)
             done = True
             break
         if not done:
