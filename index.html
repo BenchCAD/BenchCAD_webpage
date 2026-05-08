@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="BenchCAD — The first industry-grade CAD benchmark for vision-language models. 32,382 parametric variants across 106 part families, grounded in 47 ISO / DIN / EN / etc. standards.">
-  <meta name="keywords" content="BenchCAD, CAD, CadQuery, benchmark, VLM, LLM, image-to-code, IoU, Chamfer, ISO, DIN, industry-grade">
-  <title>BenchCAD — An Industry-Grade CAD Benchmark for Vision-Language Models</title>
+  <meta name="description" content="BenchCAD — A comprehensive, industry-standard benchmark for programmatic CAD. 17,900 execution-verified CadQuery programs across 106 industrial families, anchored in 47 ISO / DIN / EN / ASME / IEC standards.">
+  <meta name="keywords" content="BenchCAD, CAD, CadQuery, benchmark, MLLM, VLM, programmatic CAD, image-to-code, IoU, Chamfer, ISO, DIN, ASME, capability decomposition">
+  <title>BenchCAD — A Comprehensive, Industry-Standard Benchmark for Programmatic CAD</title>
 
   <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml">
 
@@ -35,7 +35,7 @@
             <span class="benchcad-logo">BenchCAD</span>
           </h1>
           <h2 class="subtitle is-3 publication-subtitle">
-            The First <b>Industry-Grade</b> CAD Benchmark for Vision-Language Models
+            A Comprehensive, <b>Industry-Standard</b> Benchmark for <b>Programmatic CAD</b>
           </h2>
 
           <div class="is-size-5 publication-authors">
@@ -61,13 +61,13 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://github.com/" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://github.com/BenchCAD/BenchCAD-main" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://huggingface.co/datasets/BenchCAD/BenchCAD" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">🤗</span>
                   <span>Dataset</span>
                 </a>
@@ -96,21 +96,22 @@
           <p class="hero-caption" style="max-width:220px;margin-left:auto;margin-right:auto;">One variant of the <b>wing_nut</b> family — ground-truth CadQuery, STEP, mesh, 4-view, and numeric QA.</p>
         </div>
         <div class="column is-narrow has-text-centered" style="padding:0 2.5rem;">
-          <p class="stat-number" style="font-size:3.6rem;">32,382</p>
-          <p class="stat-label" style="font-size:1.1rem;">verified variants</p>
+          <p class="stat-number" style="font-size:3.6rem;">17,900</p>
+          <p class="stat-label" style="font-size:1.1rem;">execution-verified parts</p>
         </div>
       </div>
       <div class="has-text-centered">
         <img src="static/images/family_distribution.svg" alt="BenchCAD family distribution — 106 part families across 7 industrial sectors" class="hero-distribution">
-        <p class="hero-caption" style="max-width:960px;margin-left:auto;margin-right:auto;"><b>106 part families</b> — each a top-level taxonomy with hundreds of parametric variants — spread across 7 industrial sectors (fasteners, hardware, transmission, structural, fluid, panels, enclosures) and grounded in 47 ISO / DIN / EN / etc. specifications.</p>
+        <p class="hero-caption" style="max-width:960px;margin-left:auto;margin-right:auto;"><b>106 industrial part families</b> spanning fasteners, transmission, structural, fluid, panels, hardware, and enclosures. <b>49% of families (52/106)</b> are anchored to real specification tables across <b>47 ISO / DIN / EN / ASME / IEC</b> codes.</p>
       </div>
       <h2 class="subtitle has-text-centered" style="margin-top:2rem;">
-        <span class="benchcad-logo">BenchCAD</span> is the first <b>industry-grade</b> CAD benchmark —
-        <b>32,382 parametric variants</b> across <b>106 part families</b>, every family standardized against an <b>ISO / DIN / EN</b> specification and <b>reviewed by senior industry CAD experts</b>.
-        It evaluates VLMs / LLMs on four parallel tasks: <b>image → code</b>, <b>image → QA</b>, <b>code → QA</b>, and <b>edit code</b>.
+        <span class="benchcad-logo">BenchCAD</span> is a unified, <b>capability-decomposed</b> benchmark for industrial CAD reasoning —
+        <b>17,900 execution-verified CadQuery programs</b> across <b>106 industrial families</b>, every family expert-curated and grounded in industrial standards.
+        It evaluates models through four matched tasks: <b>Vision2Code</b>, <b>Vision QA</b>, <b>Code QA</b>, and <b>Code Edit</b>.
       </h2>
       <p class="has-text-centered has-text-grey" style="margin-top:0.75rem;">
-        The only benchmark spanning the <b>full parametric CAD operation spectrum</b> — sketch, extrude, revolve, sweep, loft, fillet, chamfer, shell, draft, offset, boolean, pattern, mirror, hole, and thread.
+        Three releases: <b>BenchCAD</b> (17,900 verified parts) · <b>BenchCAD-QA</b> (2,400 paired image/code numeric QA items) · <b>BenchCAD-Edit</b> (748 verified edit pairs).
+        Operation surface covers <b>46 distinct CadQuery ops</b> including <code>helix</code>, <code>twistExtrude</code>, <code>polarArray</code>, <code>loft</code>, and <code>sweep</code>.
       </p>
     </div>
   </div>
@@ -201,21 +202,16 @@
         <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <p>
-            <b>BenchCAD is the first industry-grade CAD benchmark to cover the full spectrum of parametric CAD operations.</b>
-            Each of the <b>106 part families</b> is a top-level taxonomic category — a manufacturable part class grounded in an <b>ISO / DIN / EN</b> specification, not a synthetic primitive — and each family unfolds into hundreds of parametric <b>variants</b> that exercise a realistic construction history rather than a single extrusion.
-            Every family was <b>defined and reviewed by senior industry CAD experts</b>, ensuring that geometry, tolerances, and construction sequences reflect real engineering practice rather than textbook idealizations.
-            The registry spans <b>2D sketching</b> (line, arc, circle, spline, polygon, rectangle), <b>solid construction</b> (extrude, revolve, sweep, loft), <b>feature modification</b> (fillet, chamfer, shell, draft, offset), <b>boolean composition</b> (union, cut, intersect), <b>patterning</b> (linear array, polar array, mirror), and <b>fastener-specific features</b> (hole, counterbore, countersink, thread / helix).
+            Industrial CAD code generation requires more than recognizing the outer shape of a part: it requires understanding the part's 3D structure, inferring engineering parameters, and choosing CAD operations that reflect how the part would actually be designed and manufactured. Models that pass the eye too often <b>fail the caliper</b> — two programs may render to similar envelopes while differing substantially in editability, operation choice, and engineering detail.
           </p>
           <p>
-            <b>32,382 parametric variants</b> across <b>106 part families</b>, grounded in <b>47 ISO / DIN / EN / etc.</b> specifications —
-            every sample shipping ground-truth <b>CadQuery</b>, <b>STEP</b>, a multi-view composite render,
-            and numeric <b>QA pairs</b>. Four parallel evaluation axes:
+            <b>BenchCAD is the first public CAD benchmark that combines four properties simultaneously:</b>
           </p>
           <ul>
-            <li><b>Image → CadQuery code generation</b></li>
-            <li><b>3D understanding</b></li>
-            <li><b>Code understanding</b></li>
-            <li><b>Code editing</b></li>
+            <li><b>Execution-verified at scale</b> — 17,900 sandbox-executed CadQuery parts across 106 industrial families.</li>
+            <li><b>Standard-anchored</b> — 49% of families (52/106) bound to real ISO / DIN / EN / ASME / IEC specification tables.</li>
+            <li><b>Operation-rich</b> — 46 distinct CadQuery ops including <code>helix</code>, <code>twistExtrude</code>, <code>polarArray</code>, advanced sweeps and lofts rare or absent in prior corpora.</li>
+            <li><b>Capability-decomposed</b> — four matched tasks (Vision2Code · Vision QA · Code QA · Code Edit) with image/code paired contrast that isolate visual recognition, parametric abstraction, and code synthesis.</li>
           </ul>
         </div>
       </div>
@@ -226,42 +222,72 @@
 <!-- DATASET STATS -->
 <section class="section" style="background:#f7f7fa;">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Dataset at a Glance</h2>
+    <h2 class="title is-3 has-text-centered">Three Released Datasets</h2>
     <div class="columns is-centered">
       <div class="column is-one-quarter has-text-centered">
-        <p class="stat-number">32,382</p>
-        <p class="stat-label">parametric variants</p>
+        <p class="stat-number">17,900</p>
+        <p class="stat-label"><b>BenchCAD</b> — verified CadQuery parts<br>(code · STEP · 4 views · params · ops)</p>
       </div>
       <div class="column is-one-quarter has-text-centered">
-        <p class="stat-number">106</p>
-        <p class="stat-label">part families</p>
+        <p class="stat-number">2,400</p>
+        <p class="stat-label"><b>BenchCAD-QA</b> — paired image/code<br>numeric QA items</p>
       </div>
       <div class="column is-one-quarter has-text-centered">
-        <p class="stat-number">47</p>
-        <p class="stat-label">ISO / DIN / EN / IEC / ASME standards referenced</p>
+        <p class="stat-number">748</p>
+        <p class="stat-label"><b>BenchCAD-Edit</b> — verified<br>before/after edit pairs</p>
       </div>
     </div>
 
-    <div class="content has-text-centered">
-      <p>
-        Families span seven industrial sectors: fasteners, hardware, transmission, structural, fluid, panels, and enclosures.
+    <div class="columns is-centered" style="margin-top:1.5rem;">
+      <div class="column is-one-quarter has-text-centered">
+        <p class="stat-number" style="font-size:2.4rem;">106</p>
+        <p class="stat-label">industrial part families</p>
+      </div>
+      <div class="column is-one-quarter has-text-centered">
+        <p class="stat-number" style="font-size:2.4rem;">47</p>
+        <p class="stat-label">ISO / DIN / EN / ASME / IEC codes (49% of families)</p>
+      </div>
+      <div class="column is-one-quarter has-text-centered">
+        <p class="stat-number" style="font-size:2.4rem;">46</p>
+        <p class="stat-label">distinct CadQuery operations covered</p>
+      </div>
+    </div>
+
+    <div class="content has-text-centered" style="margin-top:1rem;">
+      <p class="has-text-grey">
+        Every family is hand-crafted by domain experts directly from industrial standards. Each release ships with <b>Croissant 1.0</b> metadata, code under <b>MIT</b>, data under <b>CC-BY-4.0</b>.
       </p>
     </div>
+  </div>
+</section>
+
+<!-- CAPABILITY HIERARCHY -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Capability Hierarchy</h2>
+    <p class="has-text-centered has-text-grey" style="margin-bottom:1.5rem;max-width:880px;margin-left:auto;margin-right:auto;">
+      We organise CAD reasoning into a <b>four-level capability pyramid</b>, from low-level perception to high-level synthesis.
+      The same questions are evaluated under both <b>Vision QA</b> (multi-view renders) and <b>Code QA</b> (CadQuery source); the matched-pair design isolates whether a failure stems from visual recognition or from reasoning over the queried attribute.
+    </p>
+    <img src="static/images/capability_pyramid.png" alt="BenchCAD-QA capability hierarchy: L1 Holistic Visual Recognition, L2 CAD Operation Understanding, L3 Industrial Parametric Abstraction, L4 Spatial / Code Reasoning, with paired Vision QA and Code QA examples per level." class="capability-pyramid">
+    <p class="hero-caption has-text-centered" style="max-width:980px;margin-left:auto;margin-right:auto;margin-top:1rem;">
+      <b>L1</b> Holistic Visual Recognition · <b>L2</b> CAD Operation Understanding · <b>L3</b> Industrial Parametric Abstraction · <b>L4</b> Compositional Spatial / Code Reasoning.
+    </p>
   </div>
 </section>
 
 <!-- TASKS -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Four Parallel Tasks</h2>
+    <h2 class="title is-3 has-text-centered">Four Matched Tasks</h2>
     <div class="columns is-multiline">
       <div class="column is-half">
         <div class="card task-card">
           <div class="card-content">
             <p class="task-icon"><i class="fas fa-code"></i></p>
-            <p class="title is-4">Image → Code</p>
-            <p class="subtitle is-6">CadQuery generation from a rendered part</p>
-            <p>Model sees a 2×2 composite render, outputs a CadQuery program. We re-execute, render, and score against GT via <b>IoU</b> (voxel 64³), <b>Chamfer</b> (2048 pts), and <b>Feature-F1</b>.</p>
+            <p class="title is-4">Vision2Code <code>img2cq</code></p>
+            <p class="subtitle is-6">CadQuery generation from multi-view renders</p>
+            <p>Model receives four canonical orthographic views and emits a CadQuery program. We re-execute and score against GT via <b>IoU</b>, <b>Chamfer</b>, <b>Hausdorff</b>, <b>Feature-F1</b>, <b>essential-op recall</b>, and <b>exec rate</b>.</p>
           </div>
         </div>
       </div>
@@ -269,9 +295,9 @@
         <div class="card task-card">
           <div class="card-content">
             <p class="task-icon"><i class="fas fa-question-circle"></i></p>
-            <p class="title is-4">Image → QA</p>
-            <p class="subtitle is-6">Visual numeric reasoning</p>
-            <p>Model answers numeric questions about the rendered part (hole diameter, fillet radius, counts, ratios). Scored by <b>symmetric ratio accuracy</b>.</p>
+            <p class="title is-4">Vision QA <code>qa_img</code></p>
+            <p class="subtitle is-6">Geometric reasoning from rendered views</p>
+            <p>Numeric QA from multi-view renders, broken out along the four-level capability hierarchy (L1 Visual Recognition → L4 Spatial Reasoning). <b>±5% tolerance</b> for ratios, exact match for integers.</p>
           </div>
         </div>
       </div>
@@ -279,9 +305,9 @@
         <div class="card task-card">
           <div class="card-content">
             <p class="task-icon"><i class="fas fa-terminal"></i></p>
-            <p class="title is-4">Code → QA</p>
-            <p class="subtitle is-6">Text-only numeric reasoning</p>
-            <p>Model reads ground-truth CadQuery source and answers the same numeric questions. Isolates code-understanding from visual perception.</p>
+            <p class="title is-4">Code QA <code>qa_code</code></p>
+            <p class="subtitle is-6">Symbolic understanding of CadQuery programs</p>
+            <p>Same QA bank as Vision QA, but conditioned on CadQuery source instead of renders. The matched-pair gap isolates the cost of visual recognition vs. parametric reasoning.</p>
           </div>
         </div>
       </div>
@@ -289,9 +315,9 @@
         <div class="card task-card">
           <div class="card-content">
             <p class="task-icon"><i class="fas fa-pen-to-square"></i></p>
-            <p class="title is-4">Edit Code</p>
-            <p class="subtitle is-6">Parametric edit from delta renders</p>
-            <p>Given original CadQuery plus a target render reflecting a <b>2–5% parameter delta</b>, the model edits the code. We execute and score the edited geometry against the GT-edit via IoU / Chamfer.</p>
+            <p class="title is-4">Code Edit <code>edit_code</code></p>
+            <p class="subtitle is-6">Instruction-guided program editing</p>
+            <p>Given a CadQuery program and a natural-language edit instruction, output a minimally modified program matching the target. Five edit types <b>T1–T5</b> from literal swap to multi-block geometry rebuild. Scored by <b>headroom-normalised improvement</b>.</p>
           </div>
         </div>
       </div>
@@ -299,21 +325,246 @@
   </div>
 </section>
 
-<!-- LEADERBOARD -->
-<section class="section" id="leaderboard" style="background:#f7f7fa;">
+<!-- VISION2CODE LEADERBOARD -->
+<section class="section" id="codegen-results">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Leaderboard <span class="tag is-success is-light" style="vertical-align:middle;margin-left:0.5rem;">Live</span></h2>
-    <p class="has-text-centered has-text-grey">
-      Commercial frontier models across the four BenchCAD tasks. Higher is better. <b>Solid</b> markers are flagship models; <b>hollow</b> markers are non-flagship variants from the same vendor.
-      <br><i>Auto-updated hourly from the official results sheet.</i>
+    <h2 class="title is-3 has-text-centered">Vision2Code Leaderboard</h2>
+    <p class="has-text-centered has-text-grey" style="margin-bottom:1.5rem;max-width:880px;margin-left:auto;margin-right:auto;">
+      Image-to-CadQuery generation from four canonical orthographic views.
+      <b>IoU↑</b> @ 64³ voxels; <b>CD↓</b> Chamfer distance; <b>ess↑</b> essential-op recall; <b>exec %</b> = fraction of generated programs that run; <b>total↑</b> = composite score.
+      Best per block in <b>bold</b>.
     </p>
 
-    <div class="has-text-centered" style="margin-top:1.5rem;">
-      <img src="static/images/leaderboard.svg" alt="BenchCAD leaderboard chart — commercial frontier models across four tasks" style="max-width:100%;width:100%;height:auto;">
+    <div class="table-container">
+      <table class="table is-striped is-hoverable is-fullwidth lb-table">
+        <thead>
+          <tr>
+            <th style="text-align:left;">Model</th>
+            <th>IoU ↑</th>
+            <th>CD ↓</th>
+            <th>ess ↑</th>
+            <th>exec %</th>
+            <th>total ↑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-group"><td colspan="6">Specialist CAD lineage (~2B)</td></tr>
+          <tr>
+            <td>Cadrille-RL</td>
+            <td>0.0683</td><td>0.3507</td><td>0.3118</td><td>91.2</td><td>0.3382</td>
+          </tr>
+          <tr>
+            <td>CADEvolve v3</td>
+            <td><b>0.7497</b></td><td><b>0.0080</b></td><td><b>0.3715</b></td><td><b>92.7</b></td><td><b>0.6014</b></td>
+          </tr>
+
+          <tr class="row-group"><td colspan="6">Frontier MLLMs</td></tr>
+          <tr>
+            <td><span class="vendor-dot openai"></span>GPT-4o</td>
+            <td>0.1884</td><td>0.0623</td><td>0.4680</td><td>87.0</td><td>0.2274</td>
+          </tr>
+          <tr>
+            <td><span class="vendor-dot openai"></span>GPT-5.3</td>
+            <td>0.1952</td><td>0.0594</td><td>0.4940</td><td>69.5</td><td>0.2160</td>
+          </tr>
+          <tr>
+            <td><span class="vendor-dot openai"></span>GPT-5.3 <span class="think-tag">thinking</span></td>
+            <td>0.2072</td><td>0.0566</td><td>0.4550</td><td>67.5</td><td>0.2120</td>
+          </tr>
+          <tr>
+            <td><span class="vendor-dot anthropic"></span>Claude Sonnet 4.6</td>
+            <td>0.2380</td><td>0.0320</td><td>0.5060</td><td>85.4</td><td>0.3510</td>
+          </tr>
+          <tr>
+            <td><span class="vendor-dot anthropic"></span>Claude Sonnet 4.6 <span class="think-tag">thinking-high</span></td>
+            <td>0.2420</td><td>0.0220</td><td>—</td><td>90.0</td><td>0.3850</td>
+          </tr>
+          <tr>
+            <td><span class="vendor-dot anthropic"></span>Claude Opus 4.7</td>
+            <td>0.2740</td><td>0.0210</td><td>0.4770</td><td><b>94.0</b></td><td>0.3830</td>
+          </tr>
+          <tr>
+            <td><span class="vendor-dot anthropic"></span>Claude Opus 4.7 <span class="think-tag">thinking</span></td>
+            <td>0.2670</td><td>0.0240</td><td>0.4710</td><td>90.4</td><td>0.3780</td>
+          </tr>
+          <tr>
+            <td><span class="vendor-dot google"></span>Gemini 3.1 Pro</td>
+            <td>0.2560</td><td>0.0400</td><td>0.3780</td><td>74.0</td><td>0.3290</td>
+          </tr>
+          <tr>
+            <td><span class="vendor-dot google"></span>Gemini 3.1 Pro <span class="think-tag">thinking</span></td>
+            <td><b>0.2790</b></td><td>0.0250</td><td><b>0.5670</b></td><td>79.8</td><td><b>0.3970</b></td>
+          </tr>
+          <tr>
+            <td><span class="vendor-dot openai"></span>OpenAI o3</td>
+            <td>0.5004</td><td>0.0143</td><td>0.4440</td><td>5.6</td><td>0.1081</td>
+          </tr>
+          <tr>
+            <td>Moonshot v1-128k</td>
+            <td>0.1530</td><td>0.0572</td><td>0.1922</td><td>10.5</td><td>0.0612</td>
+          </tr>
+          <tr>
+            <td>Moonshot v1-8k</td>
+            <td>0.2421</td><td>0.0577</td><td>0.1792</td><td>9.0</td><td>0.0604</td>
+          </tr>
+
+          <tr class="row-group"><td colspan="6">Ours — Qwen3-VL-2B trained on BenchCAD</td></tr>
+          <tr class="ours-row">
+            <td>Qwen3-VL-2B SFT (OOD)</td>
+            <td>0.5630</td><td>0.0174</td><td>0.7380</td><td>94.2</td><td>0.5877</td>
+          </tr>
+          <tr class="ours-row">
+            <td>Qwen3-VL-2B SFT (IID)</td>
+            <td>0.6400</td><td>0.0108</td><td>0.8710</td><td>88.1</td><td>0.6282</td>
+          </tr>
+          <tr class="ours-row">
+            <td>Qwen3-VL-2B RL (OOD)</td>
+            <td>0.7140</td><td>0.0047</td><td>0.8100</td><td><b>99.1</b></td><td>0.7231</td>
+          </tr>
+          <tr class="ours-row">
+            <td>Qwen3-VL-2B RL (IID)</td>
+            <td><b>0.7520</b></td><td><b>0.0041</b></td><td><b>0.8920</b></td><td>98.9</td><td><b>0.7682</b></td>
+          </tr>
+          <tr class="ours-row">
+            <td>Qwen3-VL-2B (baseline)</td>
+            <td>0.0032</td><td>0.3652</td><td>0.0042</td><td>14.6</td><td>0.0084</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <p class="has-text-centered" style="margin-top:1rem;">
-      To submit results, open a PR on the code repo (link withheld during review) with your <code>results.jsonl</code>.
+    <div class="ours-highlight">
+      <p style="margin:0;">
+        Our open <strong>Qwen3-VL-2B trained on BenchCAD</strong> reaches a Vision2Code <strong>total = 0.7682</strong> (IID) — close to <b>2× the strongest frontier MLLM</b> (Gemini 3.1 Pro thinking, 0.397) — and transfers non-trivially to held-out OOD families (<strong>0.7231</strong>).
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- VISION QA & CODE QA LEADERBOARDS -->
+<section class="section" style="background:#f7f7fa;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Vision QA &amp; Code QA Leaderboards</h2>
+    <p class="has-text-centered has-text-grey" style="margin-bottom:1.5rem;max-width:880px;margin-left:auto;margin-right:auto;">
+      Same 2,400 numeric questions, two conditioning modalities. The matched-pair gap surfaces the <b>Holistic Spatial &amp; Detailing Deficit</b>: models extract geometric and parametric information far more reliably from explicit code than from rendered images.
+    </p>
+
+    <div class="columns">
+      <div class="column is-half">
+        <h3 class="title is-5 has-text-centered">Vision QA <code>qa_img</code></h3>
+        <div class="table-container">
+          <table class="table is-striped is-hoverable is-fullwidth lb-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>L1</th><th>L2</th><th>L3</th><th>L4</th>
+                <th>Total ↑</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="vendor-dot google"></span>Gemini 3.1 Pro</td><td><b>0.750</b></td><td>0.462</td><td>0.536</td><td><b>0.688</b></td><td><b>0.587</b></td></tr>
+              <tr><td><span class="vendor-dot google"></span>Gemini 3.1 Pro <span class="think-tag">thinking</span></td><td>0.722</td><td>0.426</td><td><b>0.551</b></td><td>0.669</td><td>0.576</td></tr>
+              <tr><td><span class="vendor-dot anthropic"></span>Opus 4.7 <span class="think-tag">thinking</span></td><td>0.715</td><td><b>0.485</b></td><td>0.421</td><td>0.614</td><td>0.530</td></tr>
+              <tr><td><span class="vendor-dot anthropic"></span>Opus 4.7</td><td>0.699</td><td>0.464</td><td>0.426</td><td>0.668</td><td>0.526</td></tr>
+              <tr><td><span class="vendor-dot openai"></span>GPT-5.3 <span class="think-tag">thinking</span></td><td>0.650</td><td>0.429</td><td>0.482</td><td>0.534</td><td>0.514</td></tr>
+              <tr><td><span class="vendor-dot openai"></span>GPT-5.3</td><td>0.636</td><td>0.423</td><td>0.488</td><td>0.548</td><td>0.513</td></tr>
+              <tr><td><span class="vendor-dot openai"></span>GPT-4o</td><td>0.599</td><td>0.408</td><td>0.431</td><td>0.396</td><td>0.464</td></tr>
+              <tr><td>Moonshot v1-8k</td><td>0.600</td><td>0.246</td><td>0.465</td><td>0.181</td><td>0.447</td></tr>
+              <tr><td>Moonshot v1-128k</td><td>0.556</td><td>0.387</td><td>0.427</td><td>0.334</td><td>0.442</td></tr>
+              <tr><td><span class="vendor-dot openai"></span>OpenAI o3</td><td>0.328</td><td>0.188</td><td>0.398</td><td>0.560</td><td>0.327</td></tr>
+              <tr><td colspan="6" style="font-style:italic;color:#888;">blank-image baseline: L1 0.376 · L2 0.325 · L3 0.418 · L4 0.296 · Total 0.375</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="column is-half">
+        <h3 class="title is-5 has-text-centered">Code QA <code>qa_code</code></h3>
+        <div class="table-container">
+          <table class="table is-striped is-hoverable is-fullwidth lb-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>L1</th><th>L2</th><th>L3</th><th>L4</th>
+                <th>Total ↑</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="vendor-dot google"></span>Gemini 3.1 Pro <span class="think-tag">thinking</span></td><td>0.907</td><td>0.783</td><td><b>0.876</b></td><td>0.537</td><td><b>0.838</b></td></tr>
+              <tr><td><span class="vendor-dot google"></span>Gemini 3.1 Pro</td><td><b>0.914</b></td><td>0.782</td><td>0.867</td><td>0.537</td><td>0.836</td></tr>
+              <tr><td><span class="vendor-dot anthropic"></span>Opus 4.7 <span class="think-tag">thinking</span></td><td>0.891</td><td>0.781</td><td>0.851</td><td>0.632</td><td>0.829</td></tr>
+              <tr><td><span class="vendor-dot openai"></span>GPT-5.3</td><td>0.879</td><td><b>0.805</b></td><td>0.815</td><td>0.731</td><td>0.823</td></tr>
+              <tr><td><span class="vendor-dot openai"></span>GPT-5.3 <span class="think-tag">thinking</span></td><td>0.885</td><td>0.802</td><td>0.811</td><td>0.730</td><td>0.821</td></tr>
+              <tr><td><span class="vendor-dot anthropic"></span>Opus 4.7</td><td>0.868</td><td>0.800</td><td>0.793</td><td>0.595</td><td>0.801</td></tr>
+              <tr><td><span class="vendor-dot openai"></span>GPT-4o</td><td>0.865</td><td>0.593</td><td>0.732</td><td>0.688</td><td>0.726</td></tr>
+              <tr><td><span class="vendor-dot openai"></span>OpenAI o3</td><td>0.804</td><td>0.701</td><td>0.689</td><td>0.492</td><td>0.708</td></tr>
+              <tr><td>Moonshot v1-128k</td><td>0.842</td><td>0.551</td><td>0.692</td><td><b>0.792</b></td><td>0.700</td></tr>
+              <tr><td>gpt-oss-120b</td><td>0.790</td><td>0.732</td><td>0.656</td><td>0.379</td><td>0.689</td></tr>
+              <tr><td>Nemotron-3 120B</td><td>0.771</td><td>0.660</td><td>0.661</td><td>0.293</td><td>0.671</td></tr>
+              <tr><td>Gemma-4-31B-it</td><td>0.791</td><td>0.674</td><td>0.606</td><td>0.528</td><td>0.664</td></tr>
+              <tr><td>Moonshot v1-8k</td><td>0.772</td><td>0.603</td><td>0.555</td><td>0.536</td><td>0.620</td></tr>
+              <tr><td colspan="6" style="font-style:italic;color:#888;">blank-code baseline: L1 0.040 · L2 0.257 · L3 0.290 · L4 0.420 · Total 0.223</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <p class="has-text-centered has-text-grey" style="font-size:0.9rem;margin-top:0.75rem;">
+      Best Code QA reaches <b>0.838</b> while best Vision QA caps at <b>0.587</b> — a ~25 pt modality gap on identical questions.
+      Capability columns: <b>L1</b> Visual / Code Recognition · <b>L2</b> CAD Operation Understanding · <b>L3</b> Industrial Parametric Abstraction · <b>L4</b> Spatial Reasoning.
+    </p>
+  </div>
+</section>
+
+<!-- CODE EDIT LEADERBOARD -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Code Edit Leaderboard</h2>
+    <p class="has-text-centered has-text-grey" style="margin-bottom:1.5rem;max-width:880px;margin-left:auto;margin-right:auto;">
+      Headline metric is <b>headroom-normalised improvement</b> (mean&nbsp;norm): how much of the original-to-target IoU gap the edited program closes.
+      <code>1.0</code> means the model fully traversed the gap; the no-change baseline scores <code>0</code>.
+      The 748 pairs span five edit types <b>T1–T5</b>: literal replacement, chained transform, relative compute, feature edit, and geometry rebuild.
+    </p>
+
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <div class="table-container">
+          <table class="table is-striped is-hoverable is-fullwidth lb-table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Thinking</th>
+                <th>Mean&nbsp;norm ↑</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="vendor-dot openai"></span>GPT-5.3</td><td>✓</td><td><b>0.865</b></td></tr>
+              <tr><td><span class="vendor-dot anthropic"></span>Claude Opus 4.7</td><td>✓</td><td>0.853</td></tr>
+              <tr><td><span class="vendor-dot google"></span>Gemini 3.1 Pro</td><td>✓</td><td>0.837</td></tr>
+              <tr><td><span class="vendor-dot anthropic"></span>Claude Opus 4.7</td><td>—</td><td>0.811</td></tr>
+              <tr><td><span class="vendor-dot google"></span>Gemini 3.1 Pro</td><td>—</td><td>0.795</td></tr>
+              <tr><td><span class="vendor-dot openai"></span>GPT-5.3</td><td>—</td><td>0.740</td></tr>
+              <tr><td><span class="vendor-dot openai"></span>OpenAI o3</td><td>✓</td><td>0.708</td></tr>
+              <tr><td><span class="vendor-dot openai"></span>GPT-4o</td><td>—</td><td>0.615</td></tr>
+              <tr><td>Nemotron-3 120B</td><td>—</td><td>0.608</td></tr>
+              <tr><td>gpt-oss-120b</td><td>—</td><td>0.561</td></tr>
+              <tr><td colspan="3" style="font-style:italic;color:#888;">no-change baseline: 0.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBMISSIONS -->
+<section class="section" id="leaderboard" style="background:#f7f7fa;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Submit Your Results</h2>
+    <p class="has-text-centered has-text-grey">
+      To add a model to the four leaderboards above, open a PR on the code repo with your <code>results.jsonl</code>.
+      <br>Repo link is withheld during double-blind review.
     </p>
   </div>
 </section>
@@ -323,7 +574,7 @@
   <div class="container is-max-desktop content">
     <h2 class="title is-3">BibTeX</h2>
     <pre><code>@misc{benchcad2026,
-  title  = {BenchCAD: An Industry-Grade CAD Benchmark for Vision-Language Models},
+  title  = {BenchCAD: A Comprehensive, Industry-Standard Benchmark for Programmatic CAD},
   author = {Anonymous Authors},
   year   = {2026},
   note   = {Paper under double-blind review}

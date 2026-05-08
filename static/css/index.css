@@ -131,6 +131,55 @@ code {
   background: #eef2ff;
 }
 
+/* Codegen detail table */
+.codegen-table td,
+.codegen-table th {
+  text-align: right;
+  vertical-align: middle;
+  font-variant-numeric: tabular-nums;
+}
+.codegen-table td:first-child,
+.codegen-table th:first-child {
+  text-align: left;
+  white-space: nowrap;
+}
+.codegen-table tr.row-group td {
+  background: #f1f3f7;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: left;
+  padding-top: 0.55rem;
+  padding-bottom: 0.45rem;
+}
+
+.vendor-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+.vendor-dot.anthropic { background: #cc785c; }
+.vendor-dot.google    { background: #4285f4; }
+.vendor-dot.openai    { background: #10a37f; }
+
+.think-tag {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.05em 0.5em;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+}
+
 /* Example cases grid */
 .case-grid {
   display: grid;
@@ -181,4 +230,77 @@ code {
 
 .footer a {
   color: #1f4ed8;
+}
+
+/* Capability pyramid section */
+.capability-pyramid {
+  max-width: 1100px;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Headline finding callouts */
+.finding-card {
+  height: 100%;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #1f4ed8;
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+.finding-card .finding-title {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+  color: #1f2937;
+}
+.finding-card .finding-num {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 700;
+  color: #9333ea;
+  margin-right: 0.35rem;
+}
+
+/* Qwen3-VL-2B highlight banner */
+.ours-highlight {
+  background: linear-gradient(90deg, rgba(31,78,216,0.06) 0%, rgba(147,51,234,0.06) 100%);
+  border: 1px solid #e0e7ff;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.ours-highlight strong {
+  color: #1f4ed8;
+}
+
+/* Compact leaderboard tables */
+.lb-table td,
+.lb-table th {
+  text-align: right;
+  vertical-align: middle;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.92rem;
+}
+.lb-table td:first-child,
+.lb-table th:first-child {
+  text-align: left;
+  white-space: nowrap;
+}
+.lb-table tr.row-group td {
+  background: #f1f3f7;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: left;
+  padding-top: 0.5rem;
+  padding-bottom: 0.4rem;
+}
+.lb-table tr.ours-row td {
+  background: #f5f3ff;
 }
