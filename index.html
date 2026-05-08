@@ -331,14 +331,12 @@
     <h2 class="title is-3 has-text-centered">Overall Leaderboard</h2>
     <p class="has-text-centered has-text-grey" style="margin-bottom:1.5rem;max-width:900px;margin-left:auto;margin-right:auto;">
       Per-model performance across the four BenchCAD task categories (frontier proprietary subset).
-      <b>Bar style</b> encodes task, <b>color</b> encodes model family, and within-family variants distinguish thinking from non-thinking models.
-      Two patterns motivate the diagnostics below: (i) <b>QA-img</b> consistently underperforms <b>QA-code</b>, and (ii) <b>CodeEdit</b> trails <b>CodeGen</b> across all models.
     </p>
     <div class="has-text-centered">
       <img src="static/images/leaderboard_overview.png" alt="BenchCAD overall leaderboard — per-model performance across CodeGen IoU, CodeEdit, QA-img, QA-code for GPT, Claude, and Gemini families." class="capability-pyramid">
     </div>
     <p class="hero-caption has-text-centered" style="margin-top:0.75rem;">
-      Detailed per-task leaderboards with all evaluated models — including open-source and CAD-specialist baselines, plus our trained Qwen3-VL-2B — are below.
+      Detailed per-task leaderboards with all evaluated models — including open-source and CAD-specialist baselines — are below.
     </p>
   </div>
 </section>
@@ -451,11 +449,6 @@
       </table>
     </div>
 
-    <div class="ours-highlight">
-      <p style="margin:0;">
-        Our open <strong>Qwen3-VL-2B trained on BenchCAD</strong> reaches a Vision2Code <strong>total = 0.7682</strong> (IID) — close to <b>2× the strongest frontier MLLM</b> (Gemini 3.1 Pro thinking, 0.397) — and transfers non-trivially to held-out OOD families (<strong>0.7231</strong>).
-      </p>
-    </div>
   </div>
 </section>
 
