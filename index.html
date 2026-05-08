@@ -475,7 +475,10 @@
             <thead>
               <tr>
                 <th>Model</th>
-                <th>L1</th><th>L2</th><th>L3</th><th>L4</th>
+                <th>Holistic Visual<br>Recognition</th>
+                <th>CAD Operation<br>Understanding</th>
+                <th>Industrial Parametric<br>Abstraction</th>
+                <th>Spatial<br>Reasoning</th>
                 <th>Total ↑</th>
               </tr>
             </thead>
@@ -490,7 +493,7 @@
               <tr><td>Moonshot v1-8k</td><td>0.600</td><td>0.246</td><td>0.465</td><td>0.181</td><td>0.447</td></tr>
               <tr><td>Moonshot v1-128k</td><td>0.556</td><td>0.387</td><td>0.427</td><td>0.334</td><td>0.442</td></tr>
               <tr><td><span class="vendor-dot openai"></span>OpenAI o3</td><td>0.328</td><td>0.188</td><td>0.398</td><td>0.560</td><td>0.327</td></tr>
-              <tr><td colspan="6" style="font-style:italic;color:#888;">blank-image baseline: L1 0.376 · L2 0.325 · L3 0.418 · L4 0.296 · Total 0.375</td></tr>
+              <tr><td colspan="6" style="font-style:italic;color:#888;">blank-image baseline: 0.376 · 0.325 · 0.418 · 0.296 · 0.375</td></tr>
             </tbody>
           </table>
         </div>
@@ -503,7 +506,10 @@
             <thead>
               <tr>
                 <th>Model</th>
-                <th>L1</th><th>L2</th><th>L3</th><th>L4</th>
+                <th>CadQuery Code<br>Recognition</th>
+                <th>CAD Operation<br>Understanding</th>
+                <th>Industrial Parametric<br>Abstraction</th>
+                <th>Spatial<br>Reasoning</th>
                 <th>Total ↑</th>
               </tr>
             </thead>
@@ -521,7 +527,7 @@
               <tr><td>Nemotron-3 120B</td><td>0.771</td><td>0.660</td><td>0.661</td><td>0.293</td><td>0.671</td></tr>
               <tr><td>Gemma-4-31B-it</td><td>0.791</td><td>0.674</td><td>0.606</td><td>0.528</td><td>0.664</td></tr>
               <tr><td>Moonshot v1-8k</td><td>0.772</td><td>0.603</td><td>0.555</td><td>0.536</td><td>0.620</td></tr>
-              <tr><td colspan="6" style="font-style:italic;color:#888;">blank-code baseline: L1 0.040 · L2 0.257 · L3 0.290 · L4 0.420 · Total 0.223</td></tr>
+              <tr><td colspan="6" style="font-style:italic;color:#888;">blank-code baseline: 0.040 · 0.257 · 0.290 · 0.420 · 0.223</td></tr>
             </tbody>
           </table>
         </div>
@@ -530,7 +536,6 @@
 
     <p class="has-text-centered has-text-grey" style="font-size:0.9rem;margin-top:0.75rem;">
       Best Code QA reaches <b>0.838</b> while best Vision QA caps at <b>0.587</b> — a ~25 pt modality gap on identical questions.
-      Capability columns: <b>L1</b> Visual / Code Recognition · <b>L2</b> CAD Operation Understanding · <b>L3</b> Industrial Parametric Abstraction · <b>L4</b> Spatial Reasoning.
     </p>
   </div>
 </section>
@@ -540,7 +545,7 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Code Edit Leaderboard</h2>
     <p class="has-text-centered has-text-grey" style="margin-bottom:1.5rem;max-width:880px;margin-left:auto;margin-right:auto;">
-      Headline metric is <b>headroom-normalised improvement</b> (mean&nbsp;norm): how much of the original-to-target IoU gap the edited program closes.
+      Headline metric is <b>Accuracy</b> — headroom-normalised improvement: how much of the original-to-target IoU gap the edited program closes.
       <code>1.0</code> means the model fully traversed the gap; the no-change baseline scores <code>0</code>.
       The 748 pairs span five edit types <b>T1–T5</b>: literal replacement, chained transform, relative compute, feature edit, and geometry rebuild.
     </p>
@@ -559,7 +564,7 @@
               <tr>
                 <th>Model</th>
                 <th>Thinking</th>
-                <th>Mean&nbsp;norm ↑</th>
+                <th>Accuracy ↑</th>
               </tr>
             </thead>
             <tbody>

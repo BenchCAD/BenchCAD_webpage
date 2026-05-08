@@ -304,3 +304,9 @@ code {
 .lb-table tr.ours-row td {
   background: #f5f3ff;
 }
+.lb-table thead th {
+  font-size: 0.78rem;
+  line-height: 1.18;
+  vertical-align: bottom;
+  font-weight: 600;
+}
