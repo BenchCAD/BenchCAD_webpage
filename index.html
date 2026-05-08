@@ -325,6 +325,24 @@
   </div>
 </section>
 
+<!-- OVERALL LEADERBOARD CHART -->
+<section class="section" style="background:#f7f7fa;" id="overall-leaderboard">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Overall Leaderboard</h2>
+    <p class="has-text-centered has-text-grey" style="margin-bottom:1.5rem;max-width:900px;margin-left:auto;margin-right:auto;">
+      Per-model performance across the four BenchCAD task categories (frontier proprietary subset).
+      <b>Bar style</b> encodes task, <b>color</b> encodes model family, and within-family variants distinguish thinking from non-thinking models.
+      Two patterns motivate the diagnostics below: (i) <b>QA-img</b> consistently underperforms <b>QA-code</b>, and (ii) <b>CodeEdit</b> trails <b>CodeGen</b> across all models.
+    </p>
+    <div class="has-text-centered">
+      <img src="static/images/leaderboard_overview.png" alt="BenchCAD overall leaderboard — per-model performance across CodeGen IoU, CodeEdit, QA-img, QA-code for GPT, Claude, and Gemini families." class="capability-pyramid">
+    </div>
+    <p class="hero-caption has-text-centered" style="margin-top:0.75rem;">
+      Detailed per-task leaderboards with all evaluated models — including open-source and CAD-specialist baselines, plus our trained Qwen3-VL-2B — are below.
+    </p>
+  </div>
+</section>
+
 <!-- VISION2CODE LEADERBOARD -->
 <section class="section" id="codegen-results">
   <div class="container is-max-desktop">
@@ -527,8 +545,14 @@
       The 748 pairs span five edit types <b>T1–T5</b>: literal replacement, chained transform, relative compute, feature edit, and geometry rebuild.
     </p>
 
-    <div class="columns is-centered">
-      <div class="column is-two-thirds">
+    <div class="columns is-vcentered">
+      <div class="column is-half">
+        <img src="static/images/edit_by_type.png" alt="BenchCAD-Edit accuracy across task types T1 literal-replace through T5 geometry-rebuild for frontier MLLMs." style="max-width:100%;display:block;margin:0 auto;">
+        <p class="hero-caption has-text-centered" style="margin-top:0.5rem;">
+          Per-type accuracy across <b>T1–T5</b>: simple literal swaps are nearly solved; multi-block geometry rebuilds remain difficult.
+        </p>
+      </div>
+      <div class="column is-half">
         <div class="table-container">
           <table class="table is-striped is-hoverable is-fullwidth lb-table">
             <thead>
