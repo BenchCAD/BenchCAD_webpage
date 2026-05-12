@@ -1,19 +1,34 @@
 body {
-  font-family: 'Noto Sans', 'Google Sans', sans-serif;
-  color: #1a1a1a;
+  font-family: 'IBM Plex Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  color: #1f2937;
+  font-feature-settings: "ss01", "cv11";
 }
 
 .publication-title, .publication-subtitle, .title {
-  font-family: 'Google Sans', sans-serif;
+  font-family: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+code, pre, .stat-number {
+  font-feature-settings: "tnum";
+}
+
+pre, code {
+  font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 .benchcad-logo {
-  background: linear-gradient(90deg, #1f4ed8 0%, #9333ea 50%, #db2777 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  color: #111827;
+  letter-spacing: -0.025em;
+}
+.benchcad-logo .bc-cad {
+  font-family: 'IBM Plex Mono', 'IBM Plex Sans', monospace;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin-left: 0.02em;
 }
 
 .publication-title {
@@ -89,14 +104,13 @@ body {
 }
 
 .stat-number {
-  font-family: 'Google Sans', sans-serif;
+  font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace;
   font-size: 3rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #1f4ed8, #9333ea);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #111827;
   line-height: 1.1;
+  font-feature-settings: "tnum";
 }
 
 .stat-label {
@@ -119,7 +133,7 @@ body {
 
 .task-card .task-icon {
   font-size: 2rem;
-  color: #1f4ed8;
+  color: #1f2937;
   margin-bottom: 0.5rem;
 }
 
@@ -139,15 +153,15 @@ pre code {
 }
 
 code {
-  background: #eef2ff;
+  background: #f3f4f6;
   color: #1f2937;
   padding: 0.1em 0.35em;
   border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 0.88em;
 }
 
 .table th {
-  background: #eef2ff;
+  background: #f3f4f6;
 }
 
 /* Codegen detail table */
@@ -189,12 +203,12 @@ code {
 .think-tag {
   display: inline-block;
   margin-left: 0.4rem;
-  padding: 0.05em 0.5em;
+  padding: 0.05em 0.55em;
   border-radius: 999px;
-  background: #eef2ff;
-  color: #4338ca;
-  font-size: 0.72rem;
-  font-weight: 600;
+  background: #f3f4f6;
+  color: #4b5563;
+  font-size: 0.7rem;
+  font-weight: 500;
   letter-spacing: 0.02em;
   vertical-align: middle;
 }
@@ -236,19 +250,28 @@ code {
 
 .case-label {
   margin-top: 0.5rem;
-  font-family: 'Google Sans', sans-serif;
-  font-size: 0.82rem;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
   color: #334155;
+  letter-spacing: 0;
 }
 
 .footer {
   background: #fafafa;
   padding: 2.5rem 1.5rem;
   color: #555;
+  border-top: 1px solid #e5e7eb;
 }
 
 .footer a {
-  color: #1f4ed8;
+  color: #374151;
+  text-decoration: underline;
+  text-decoration-color: #d1d5db;
+  text-underline-offset: 2px;
+}
+.footer a:hover {
+  color: #111827;
+  text-decoration-color: #6b7280;
 }
 
 /* Capability pyramid section */
@@ -257,43 +280,6 @@ code {
   width: 100%;
   display: block;
   margin: 0 auto;
-}
-
-/* Headline finding callouts */
-.finding-card {
-  height: 100%;
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-left: 4px solid #1f4ed8;
-  border-radius: 8px;
-  padding: 1.1rem 1.25rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-}
-.finding-card .finding-title {
-  font-family: 'Google Sans', sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
-  margin-bottom: 0.4rem;
-  color: #1f2937;
-}
-.finding-card .finding-num {
-  font-family: 'Google Sans', sans-serif;
-  font-weight: 700;
-  color: #9333ea;
-  margin-right: 0.35rem;
-}
-
-/* Qwen3-VL-2B highlight banner */
-.ours-highlight {
-  background: linear-gradient(90deg, rgba(31,78,216,0.06) 0%, rgba(147,51,234,0.06) 100%);
-  border: 1px solid #e0e7ff;
-  border-radius: 10px;
-  padding: 1rem 1.25rem;
-  text-align: center;
-  margin-top: 1.5rem;
-}
-.ours-highlight strong {
-  color: #1f4ed8;
 }
 
 /* Compact leaderboard tables */
