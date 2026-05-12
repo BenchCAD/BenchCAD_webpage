@@ -37,19 +37,6 @@ body {
   margin-bottom: 1.25rem !important;
 }
 
-.conference-tag .review-tag {
-  display: inline-block;
-  margin-left: 0.4rem;
-  padding: 0.1em 0.55em;
-  border-radius: 999px;
-  background: #fef3c7;
-  color: #92400e;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  vertical-align: middle;
-}
-
 .publication-authors {
   margin-bottom: 0.5rem;
 }
