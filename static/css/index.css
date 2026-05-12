@@ -18,12 +18,36 @@ body {
 
 .publication-title {
   margin-bottom: 1rem !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
 }
 
-.publication-subtitle {
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
-  color: #444;
+.publication-title .paper-title-line {
+  display: block;
+  font-size: 0.62em;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-top: 0.4rem;
+}
+
+.conference-tag {
+  color: #4b5563;
+  font-weight: 500;
+  margin-bottom: 1.25rem !important;
+}
+
+.conference-tag .review-tag {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.1em 0.55em;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
 }
 
 .publication-authors {
@@ -34,6 +58,11 @@ body {
   margin-right: 0.3em;
 }
 
+.publication-authors sup {
+  font-size: 0.7em;
+  color: #6b7280;
+}
+
 .publication-links {
   margin-top: 1.5rem;
 }
@@ -41,6 +70,15 @@ body {
 .publication-links .link-block {
   margin: 0.25rem;
   display: inline-block;
+}
+
+.publication-links .button.is-dark {
+  background: #1f2937;
+  border: none;
+  font-weight: 500;
+}
+.publication-links .button.is-dark:hover {
+  background: #374151;
 }
 
 .hero.teaser .hero-body {
@@ -309,4 +347,37 @@ code {
   line-height: 1.18;
   vertical-align: bottom;
   font-weight: 600;
+}
+
+/* BibTeX copy button */
+.bibtex-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.copy-bibtex-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #1f2937;
+  color: #f5f5f4;
+  border: none;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.copy-bibtex-btn:hover {
+  background: #374151;
+}
+.copy-bibtex-btn:active {
+  transform: translateY(1px);
+}
+.copy-bibtex-btn.copied {
+  background: #10b981;
+}
+.copy-bibtex-btn .icon {
+  font-size: 0.95em;
 }

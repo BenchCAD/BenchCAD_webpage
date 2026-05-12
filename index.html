@@ -11,6 +11,7 @@
 
   <link rel="stylesheet" href="static/vendor/css/bulma.min.css">
   <link rel="stylesheet" href="static/vendor/css/fontawesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 </head>
 <body>
@@ -31,32 +32,31 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title is-bold">
-            <span class="benchcad-logo">BenchCAD</span>
+          <h1 class="title is-1 publication-title">
+            <span class="benchcad-logo">BenchCAD</span>:
+            <span class="paper-title-line">A Comprehensive, Industry-Standard Benchmark for Programmatic CAD</span>
           </h1>
-          <h2 class="subtitle is-3 publication-subtitle">
-            A Comprehensive, <b>Industry-Standard</b> Benchmark for <b>Programmatic CAD</b>
-          </h2>
+          <h3 class="title is-5 conference-tag">NeurIPS 2026 Datasets &amp; Benchmarks Track <span class="review-tag">under double-blind review</span></h3>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Anonymous Authors</span>
+            <span class="author-block">Anonymous Authors<sup>1</sup></span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Paper under double-blind review</span>
+            <span class="author-block"><sup>1</sup>Anonymous Affiliation</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://arxiv.org/pdf/2605.10865" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-book-open"></i></span>
+                <a href="https://arxiv.org/abs/2605.10865" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
                   <span>arXiv</span>
                 </a>
               </span>
@@ -611,22 +611,66 @@
 <!-- BIBTEX -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title is-3">BibTeX</h2>
-    <pre><code>@misc{benchcad2026,
-  title  = {BenchCAD: A Comprehensive, Industry-Standard Benchmark for Programmatic CAD},
-  author = {Anonymous Authors},
-  year   = {2026},
-  note   = {Paper under double-blind review}
+    <h2 class="title is-3 bibtex-header">
+      BibTeX
+      <button class="copy-bibtex-btn" type="button" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+        <span class="icon"><i class="fas fa-copy"></i></span>
+        <span class="copy-label">Copy</span>
+      </button>
+    </h2>
+    <pre><code id="bibtex-snippet">@misc{benchcad2026,
+  title        = {BenchCAD: A Comprehensive, Industry-Standard Benchmark for Programmatic CAD},
+  author       = {Anonymous Authors},
+  year         = {2026},
+  eprint       = {2605.10865},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.CV},
+  url          = {https://arxiv.org/abs/2605.10865},
+  note         = {Paper under double-blind review}
 }</code></pre>
   </div>
 </section>
+
+<script>
+function copyBibTeX() {
+  var snippet = document.getElementById('bibtex-snippet');
+  if (!snippet) return;
+  var text = snippet.innerText;
+  var btn = document.querySelector('.copy-bibtex-btn');
+  var label = btn ? btn.querySelector('.copy-label') : null;
+  var done = function () {
+    if (label) {
+      var original = label.textContent;
+      label.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(function () {
+        label.textContent = original;
+        btn.classList.remove('copied');
+      }, 1500);
+    }
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done);
+  } else {
+    var range = document.createRange();
+    range.selectNodeContents(snippet);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand('copy'); } catch (e) {}
+    sel.removeAllRanges();
+    done();
+  }
+}
+</script>
 
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
       <p>
-        Template adapted from <a href="https://nerfies.github.io/">Nerfies</a>,
-        licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+        Page template adapted from the <a href="https://eliahuhorwitz.github.io/Academic-project-page-template/" target="_blank" rel="noopener">Academic Project Page Template</a>
+        by Eliahu Horwitz (itself adapted from <a href="https://nerfies.github.io/" target="_blank" rel="noopener">Nerfies</a>).
+        Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC&nbsp;BY-SA&nbsp;4.0</a>.
       </p>
     </div>
   </div>
